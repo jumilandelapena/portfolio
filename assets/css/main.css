@@ -1296,14 +1296,6 @@ section,
   font-size: 14px;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin-top: 8px;
-  opacity: 0;
-  transform: translateY(-5px);
-  transition: all 0.3s;
-}
-
-.skills .skill-item:hover .skill-tooltip {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .skills .skill-box {
@@ -3056,5 +3048,41 @@ section,
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/*--------------------------------------------------------------
+# Accessibility additions
+--------------------------------------------------------------*/
+/* .header-toggle is a real <button> now; strip the UA border and padding
+   so the accent circle above still paints correctly. */
+.header-toggle {
+  border: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Honour an explicit OS-level request for reduced motion. The [data-aos]
+   override is load-bearing: without it AOS leaves every section at opacity 0. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
