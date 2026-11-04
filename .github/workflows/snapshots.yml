@@ -1,7 +1,9 @@
 name: Update visual baselines
 
-# Regenerates tests/visual/__screenshots__ on Linux (the same platform CI uses)
-# and commits them to the branch the workflow was started from.
+# Regenerates tests/visual/__screenshots__ on Linux (the same runner and
+# Chromium build CI compares on), commits them to the branch the workflow was
+# started from, and uploads them as an artifact so a failed push is never a
+# dead end.
 
 on:
   workflow_dispatch:
@@ -34,6 +36,13 @@ jobs:
       - name: Regenerate baselines
         run: pnpm test:visual:update
 
+      - name: Upload baselines
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: tests/visual/__screenshots__
+          retention-days: 14
+
       - name: Commit baselines
         run: |
           git config user.name "github-actions[bot]"
@@ -41,7 +50,15 @@ jobs:
           git add tests/visual/__screenshots__
           if git diff --cached --quiet; then
             echo "baselines unchanged"
-          else
-            git commit -m "test: update visual baselines"
-            git push
+            exit 0
           fi
+          git commit -m "test: update visual baselines"
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push failed (attempt $attempt), retrying in 20s"
+            sleep 20
+          done
+          echo "::error::could not push the baselines; download the visual-baselines artifact instead"
+          exit 1
