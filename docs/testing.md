@@ -75,6 +75,12 @@ Linux, because font rendering differs between operating systems:
 - On Windows and macOS `ignoreSnapshots` is on, so the visual specs run but do
   not compare, and no local baselines are needed.
 
+A branch that has no committed baselines yet (for example the first run of a new
+suite) does not fail in CI: `playwright.config.ts` switches to
+`updateSnapshots: missing` for that run and `ci.yml` uploads the generated folder
+as the `visual-baselines` artifact. Download it, commit it under
+`tests/visual/__screenshots__/`, and the next run compares strictly.
+
 To update the baselines after an intended change, either:
 
 1. Run the **Update visual baselines** workflow from the Actions tab against your

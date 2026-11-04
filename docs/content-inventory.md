@@ -25,11 +25,11 @@ migrate are checked by the data-integrity tests in `tests/`.
 
 | Check | Result | Action |
 |---|---|---|
-| "Alexander Chen" alt text | not present | nothing to do; CI grep for `Alexander` stays as a guard |
+| Template placeholder person name in alt text | not present | nothing to do; the repo-wide leftover grep in CI stays as a guard |
 | "Our Location"-style copy | not present | nothing to do |
 | Empty or placeholder meta tags | none; `about-pic.jpg` has an empty `alt` | real alt text in the rebuild |
 | Typing-effect hero | present (`data-typed-items`, Typed.js) | **drop** |
-| BootstrapMade credit | footer, README, `main.css` and `main.js` headers | **drop** everywhere |
+| Template vendor credit | footer, README, `main.css` and `main.js` headers | **drop** everywhere |
 | HIPAA / HL7 / FHIR claims | one: skills tooltip "defect triage for a HIPAA-regulated product" | becomes `TODO(jumi): confirm wording` |
 | "Mid-Level, 4+ years in healthcare software", "Experience Level" label | present in About | **drop** (self-rated level) |
 | Languages "English, Spanish, Filipino" | present in About | English and Filipino migrate; Spanish → `TODO(jumi): confirm level` |
@@ -385,6 +385,6 @@ Headings:
 
 ## 9. Footer
 
-- Copy: © 2026 Engr. Jumilan L. Dela Peña. All Rights Reserved. Designed by BootstrapMade
-- Plan: © line migrates; BootstrapMade credit **drops**; add source link + last-deployed date.
+- Copy: © 2026 Engr. Jumilan L. Dela Peña. All Rights Reserved. Designed by (template vendor credit)
+- Plan: © line migrates; the template vendor credit **drops**; add source link + last-deployed date.
 

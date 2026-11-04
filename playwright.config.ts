@@ -1,9 +1,13 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
+
 import { defineConfig, devices } from '@playwright/test';
 
 import { BASE } from './src/site.config';
 
 const PORT = 4321;
 const isCI = Boolean(process.env['CI']);
+const hasBaselines = existsSync(path.resolve(import.meta.dirname, 'tests', 'visual', '__screenshots__'));
 
 /** The production preview, served under the GitHub Pages base path. */
 export const BASE_URL = `http://127.0.0.1:${PORT}${BASE}/`;
@@ -21,6 +25,10 @@ export default defineConfig({
   // not compare pixels, so Windows and macOS never need their own baselines.
   snapshotPathTemplate: '{testDir}/visual/__screenshots__/{testFileName}/{arg}-{projectName}{ext}',
   ignoreSnapshots: !isCI && process.platform !== 'linux',
+  // A branch with no committed baselines yet (the first CI run of a new suite) writes them
+  // instead of failing; ci.yml uploads that folder so they can be committed. Once baselines
+  // exist, CI compares strictly.
+  updateSnapshots: isCI && !hasBaselines ? 'missing' : 'none',
   expect: {
     toHaveScreenshot: { maxDiffPixelRatio: 0.01, animations: 'disabled' },
   },
