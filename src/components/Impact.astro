@@ -11,7 +11,7 @@ const { data } = impact;
 ---
 
 <Section id="impact" title={data.title} intro={data.intro}>
-  <ul class="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4" data-testid="impact-stats">
+  <ul class="reveal reveal-fade grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4" data-testid="impact-stats">
     {data.stats.map((stat) => (
       <li data-testid="impact-stat" data-value={stat.value}>
         <span class="tabular block text-3xl font-semibold text-fg">{formatNumber(stat.value)}</span>
@@ -24,9 +24,9 @@ const { data } = impact;
     as of <time datetime={data.asOf}>{formatDateOnly(data.asOf)}</time> · source: {data.source} · {data.period}
   </p>
 
-  <div class="mt-12 grid gap-10 lg:grid-cols-2">
-    {data.roles.map((role) => (
-      <article>
+  <div class="reveal-stagger mt-12 grid gap-10 lg:grid-cols-2">
+    {data.roles.map((role, index) => (
+      <article style={`--i: ${index}`}>
         <h3 class="text-lg font-semibold">{role.title}</h3>
         <p class="mt-1 font-mono text-xs text-muted">{role.period}</p>
         <ul class="mt-4 space-y-3 text-sm">

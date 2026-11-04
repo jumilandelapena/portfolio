@@ -3,16 +3,15 @@
 @import '@fontsource-variable/jetbrains-mono';
 
 /*
- * Design tokens. Six named colours; every other tone is derived with
- * color-mix so the palette never grows by accident.
+ * Design tokens. Four named colours ("Tech & Futuristic"); every other tone
+ * is derived with color-mix(in srgb) so the palette never grows by accident.
+ * Contrast ratios for every text pair are documented in the README.
  */
 @theme {
-  --color-ink: #0f1318;
-  --color-paper: #f7f8fa;
-  --color-graphite: #1a2028;
-  --color-slate: #6b7785;
-  --color-signal: #2fb8a6;
-  --color-amber: #d9a441;
+  --color-slate-deep: #0f172a;
+  --color-cyan: #22d3ee;
+  --color-slate-muted: #64748b;
+  --color-white-crisp: #f4f4f4;
 
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -40,6 +39,11 @@
 
   --container-measure: 65ch;
   --container-site: 64rem;
+
+  /* Motion: one easing, two durations, shared by every transition. */
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
 }
 
 /* Semantic tokens that switch with the theme. */
@@ -48,35 +52,49 @@
   --color-surface: var(--surface);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
+  --color-muted-strong: var(--muted-strong);
   --color-accent: var(--accent);
-  --color-accent-fg: var(--accent-fg);
+  --color-accent-fill: var(--accent-fill);
+  --color-accent-fill-fg: var(--accent-fill-fg);
   --color-line: var(--line);
-  --color-warn: var(--warn);
 }
 
 :root,
 [data-theme='dark'] {
   color-scheme: dark;
-  --bg: var(--color-ink);
-  --surface: var(--color-graphite);
-  --fg: var(--color-paper);
-  --muted: color-mix(in oklab, var(--color-slate), var(--color-paper) 45%);
-  --accent: var(--color-signal);
-  --accent-fg: var(--color-ink);
-  --line: color-mix(in oklab, var(--color-slate), transparent 70%);
-  --warn: var(--color-amber);
+  --bg: var(--color-slate-deep);
+  --surface: color-mix(in srgb, var(--color-slate-deep), var(--color-white-crisp) 6%);
+  --fg: var(--color-white-crisp);
+  /* Small secondary text: Muted Slate lifted toward white until it clears 4.5:1 on both backgrounds. */
+  --muted: color-mix(in srgb, var(--color-slate-muted), var(--color-white-crisp) 20%);
+  /* Borders, dividers, icons and large text only (3.75:1 on the background). */
+  --muted-strong: var(--color-slate-muted);
+  --accent: var(--color-cyan);
+  --accent-fill: var(--color-cyan);
+  --accent-fill-fg: var(--color-slate-deep);
+  --line: color-mix(in srgb, var(--color-slate-muted), transparent 60%);
+  --glow: color-mix(in srgb, var(--color-cyan), transparent 70%);
+  --glow-inset: color-mix(in srgb, var(--color-cyan), transparent 60%);
+  --header-bg: color-mix(in srgb, var(--color-slate-deep), transparent 15%);
+  --header-line: color-mix(in srgb, var(--color-cyan), transparent 70%);
 }
 
 [data-theme='light'] {
   color-scheme: light;
-  --bg: var(--color-paper);
-  --surface: color-mix(in oklab, var(--color-paper), var(--color-slate) 5%);
-  --fg: var(--color-graphite);
-  --muted: color-mix(in oklab, var(--color-slate), var(--color-graphite) 30%);
-  --accent: color-mix(in oklab, var(--color-signal), var(--color-graphite) 48%);
-  --accent-fg: var(--color-paper);
-  --line: color-mix(in oklab, var(--color-slate), transparent 65%);
-  --warn: color-mix(in oklab, var(--color-amber), var(--color-graphite) 45%);
+  --bg: var(--color-white-crisp);
+  --surface: color-mix(in srgb, var(--color-white-crisp), var(--color-slate-muted) 6%);
+  --fg: var(--color-slate-deep);
+  --muted: color-mix(in srgb, var(--color-slate-muted), var(--color-slate-deep) 11%);
+  --muted-strong: var(--color-slate-muted);
+  /* Bright cyan is 1.64:1 on white, so text and focus rings use a darkened mix (4.95:1). */
+  --accent: color-mix(in srgb, var(--color-cyan), var(--color-slate-deep) 51%);
+  --accent-fill: var(--color-cyan);
+  --accent-fill-fg: var(--color-slate-deep);
+  --line: color-mix(in srgb, var(--color-slate-muted), transparent 60%);
+  --glow: color-mix(in srgb, var(--accent), transparent 70%);
+  --glow-inset: color-mix(in srgb, var(--accent), transparent 60%);
+  --header-bg: color-mix(in srgb, var(--color-white-crisp), transparent 15%);
+  --header-line: color-mix(in srgb, var(--accent), transparent 70%);
 }
 
 @layer base {
@@ -103,7 +121,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--accent), transparent 60%);
+    background-color: color-mix(in srgb, var(--accent), transparent 60%);
   }
 
   h1,
@@ -133,6 +151,15 @@
     font-size: 0.92em;
   }
 
+  summary {
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  summary:hover,
+  summary:focus-visible {
+    color: var(--accent);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -155,8 +182,8 @@
     top: -100%;
     z-index: 100;
     padding: 0.5rem 0.75rem;
-    background-color: var(--accent);
-    color: var(--accent-fg);
+    background-color: var(--accent-fill);
+    color: var(--accent-fill-fg);
     border-radius: var(--radius-md);
     font-weight: 600;
   }
@@ -165,19 +192,269 @@
     top: 1rem;
   }
 
-  .prose-link {
+  /*
+   * Links: colour shifts to the accent and an underline grows from the left.
+   * The underline is a background gradient so wrapped links keep their line
+   * fragments and each fragment gets its own line (box-decoration-break).
+   */
+  .link,
+  .link-prose {
+    color: inherit;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      background-size var(--dur-base) var(--ease-out);
+  }
+
+  /* Prose links keep a resting underline so they are recognisable without colour. */
+  .link-prose {
     color: var(--accent);
     text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent), transparent 55%);
     text-decoration-thickness: 1px;
   }
 
-  .prose-link:hover {
-    text-decoration-thickness: 2px;
+  .link:hover,
+  .link:focus-visible,
+  .link-prose:hover,
+  .link-prose:focus-visible {
+    color: var(--accent);
+    background-size: 100% 1px;
   }
 
-  /* The one orchestrated moment: status panel rows resolve in sequence. */
+  .link-prose:hover,
+  .link-prose:focus-visible {
+    text-decoration-color: transparent;
+  }
+
+  /* Buttons and calls to action. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      color var(--dur-base) var(--ease-out),
+      background-color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out),
+      translate var(--dur-base) var(--ease-out);
+  }
+
+  .btn-primary {
+    background-color: var(--accent-fill);
+    border-color: var(--accent-fill);
+    color: var(--accent-fill-fg);
+  }
+
+  .btn-primary:focus-visible {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-cyan), transparent 40%),
+      0 6px 20px var(--glow);
+    translate: 0 -1px;
+  }
+
+  .btn-outline {
+    border-color: var(--line);
+    color: var(--fg);
+  }
+
+  .btn-outline:hover,
+  .btn-outline:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    background: transparent;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .icon-btn:hover,
+  .icon-btn:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Header: transparent at the top, translucent with a cyan hairline once scrolled. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+    transition:
+      background-color var(--dur-base) var(--ease-out),
+      border-color var(--dur-base) var(--ease-out);
+  }
+
+  .site-header[data-scrolled='true'] {
+    background-color: var(--header-bg);
+    border-bottom-color: var(--header-line);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-md);
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible,
+  .nav-link[aria-current='location'] {
+    color: var(--accent);
+  }
+
+  /* Scroll progress: 2px accent bar driven by the document scroll, no script. */
+  .scroll-progress {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-progress {
+        display: block;
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        height: 2px;
+        background-color: var(--accent-fill);
+        transform-origin: 0 50%;
+        animation: scroll-progress linear both;
+        animation-timeline: scroll(root);
+      }
+    }
+  }
+
+  @keyframes scroll-progress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Project panels. `translate` is used for the lift so the scroll reveal's `transform` never fights it. */
+  .panel {
+    border: 1px solid var(--line);
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out),
+      translate var(--dur-base) var(--ease-out);
+  }
+
+  .panel .panel-title {
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+
+  .panel .tag {
+    border: 1px solid var(--line);
+    color: var(--muted);
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+
+  .panel:focus-within {
+    border-color: var(--accent);
+    box-shadow:
+      inset 0 0 0 1px var(--glow-inset),
+      0 8px 24px var(--glow);
+    translate: 0 -2px;
+  }
+
+  .panel:focus-within .panel-title {
+    color: var(--accent);
+  }
+
+  .panel:focus-within .tag {
+    color: var(--fg);
+    border-color: var(--muted-strong);
+  }
+
+  .filter-chip {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    background: transparent;
+    transition:
+      color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      background-color var(--dur-fast) var(--ease-out);
+  }
+
+  .filter-chip:hover,
+  .filter-chip:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .filter-chip[aria-pressed='true'] {
+    background-color: var(--accent-fill);
+    border-color: var(--accent-fill);
+    color: var(--accent-fill-fg);
+  }
+
+  /* Hover-only effects (lift, glow) stay off on touch so they never stick. */
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--color-cyan), transparent 40%),
+        0 6px 20px var(--glow);
+      translate: 0 -1px;
+    }
+
+    .panel:hover {
+      border-color: var(--accent);
+      box-shadow:
+        inset 0 0 0 1px var(--glow-inset),
+        0 8px 24px var(--glow);
+      translate: 0 -2px;
+    }
+
+    .panel:hover .panel-title {
+      color: var(--accent);
+    }
+
+    .panel:hover .tag {
+      color: var(--fg);
+      border-color: var(--muted-strong);
+    }
+  }
+
+  /* The one load animation: status panel rows resolve in sequence. */
   .status-row {
-    animation: status-resolve 320ms ease-out both;
+    animation: status-resolve 320ms var(--ease-out) both;
     animation-delay: calc(var(--row, 0) * 110ms);
   }
 
@@ -198,24 +475,91 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .filter-chip {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    padding: 0.3rem 0.7rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    background: transparent;
+  /*
+   * Scroll reveals. Progressive enhancement, in this order of preference:
+   *  1. Browsers with scroll-driven animations run the reveal in CSS; items
+   *     inside a .reveal-stagger container are offset by their --i index on the
+   *     view timeline, so no script and no timers are involved.
+   *  2. Elsewhere, nothing is hidden until motion.ts has set up its observer
+   *     and added `data-reveal` to <html>; it then animates items on entry with a
+   *     per-item time delay, and a safety timeout reveals everything regardless.
+   *  3. With reduced motion, no JavaScript, or no support: everything is visible.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .reveal,
+      .reveal-stagger > * {
+        animation: reveal-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 25%;
+      }
+
+      .reveal-stagger > * {
+        animation-range: entry calc(var(--i, 0) * 4%) entry calc(25% + var(--i, 0) * 4%);
+      }
+
+      .reveal-fade {
+        animation-name: reveal-fade;
+      }
+
+      .reveal-x > * {
+        animation-name: reveal-x;
+      }
+    }
+
+    @supports not (animation-timeline: view()) {
+      html[data-reveal] .reveal:not(.is-visible),
+      html[data-reveal] .reveal-stagger > :not(.is-visible) {
+        opacity: 0;
+      }
+
+      html[data-reveal] .reveal.is-visible,
+      html[data-reveal] .reveal-stagger > .is-visible {
+        animation: reveal-up 500ms var(--ease-out) both;
+        animation-delay: calc(var(--i, 0) * 40ms);
+      }
+
+      html[data-reveal] .reveal-fade.is-visible {
+        animation-name: reveal-fade;
+      }
+
+      html[data-reveal] .reveal-x > .is-visible {
+        animation-name: reveal-x;
+      }
+    }
   }
 
-  .filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--fg);
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 
-  .filter-chip[aria-pressed='true'] {
-    background-color: var(--accent);
-    border-color: var(--accent);
-    color: var(--accent-fg);
+  @keyframes reveal-fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes reveal-x {
+    from {
+      opacity: 0;
+      transform: translateX(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }

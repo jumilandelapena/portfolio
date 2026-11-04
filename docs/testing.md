@@ -65,10 +65,39 @@ the Linux build used in CI reaches them, the Windows build does not), so the tes
 detects it from the first Tab and walks whatever the engine can reach, then checks
 the ring on a link focused programmatically.
 
+## Motion
+
+`tests/e2e/motion.spec.ts` covers the palette and motion work:
+
+- **Hover and focus.** A certificate link, the hero call to action and a project
+  panel are hovered and then focused; the test waits for the element's CSS
+  transitions to finish (`getAnimations()` filtered to `CSSTransition`) rather
+  than sleeping, then asserts the computed colour, border colour, box-shadow and
+  `translate` with `toHaveCSS`. The light theme asserts the darkened cyan. Hover
+  cases are skipped on the two mobile projects, where lift and glow are off by
+  design.
+- **Scrollspy.** Scrolling each section to the top sets
+  `aria-current="location"` on exactly one nav link; scrolling back to the top
+  clears it.
+- **Header.** `data-scrolled` flips to `true` past 40px and back to `false` at
+  the top.
+- **Reveals.** Every section's content reaches opacity 1 once scrolled into
+  view (CSS timeline or the observer fallback, whichever the engine uses).
+- **Reduced motion.** With `reducedMotion: 'reduce'` nothing starts hidden, the
+  reveal fallback stays off and the progress bar is not shown.
+- **No JavaScript.** With scripts disabled every section and link is present and
+  content still shows as it scrolls into view.
+
+The visual project runs with `reducedMotion: 'reduce'` and
+`animations: 'disabled'`, so reveals and transitions never land in a snapshot.
+
 ## Visual regression
 
-Baselines live in `tests/visual/__screenshots__/` and are compared only on
-Linux, because font rendering differs between operating systems:
+Baselines live in `tests/visual/__screenshots__/`. They are generated and compared
+in the same environment, GitHub's `ubuntu-latest` runner with the browsers from
+`playwright install --with-deps` (the same Chromium build as the Playwright
+`v1.64.1` Docker image), because font rendering differs between operating
+systems:
 
 - In CI (`ubuntu-latest`) the `visual` project compares against the committed
   baselines and fails on more than 1% changed pixels.

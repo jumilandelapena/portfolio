@@ -44,19 +44,14 @@ const coursesFor = (id: string) => courses.filter((c) => c.data.certification.id
     </p>
   </div>
 
-  <ul class="mt-8 divide-y divide-line border-y border-line" data-filter-items>
+  <ul class="reveal-stagger mt-8 divide-y divide-line border-y border-line" data-filter-items>
     {certifications.map((cert, index) => {
       const certCourses = coursesFor(cert.id);
       return (
-        <li id={`cert-${cert.id}`} data-areas={cert.data.areas.join(' ')} class="py-6">
+        <li id={`cert-${cert.id}`} data-areas={cert.data.areas.join(' ')} class="py-6" style={`--i: ${index}`}>
           <h3 class="text-lg font-semibold">
             {cert.data.url ? (
-              <a
-                href={cert.data.url}
-                rel="noopener noreferrer"
-                class="hover:text-accent"
-                data-testid="certification-link"
-              >
+              <a href={cert.data.url} rel="noopener noreferrer" class="link" data-testid="certification-link">
                 {cert.data.title}
               </a>
             ) : (
@@ -72,13 +67,13 @@ const coursesFor = (id: string) => courses.filter((c) => c.data.certification.id
           <p class="mt-3 text-sm">{cert.data.description}</p>
           {certCourses.length > 0 && (
             <details class="mt-3 text-sm" open={index === 0}>
-              <summary class="cursor-pointer font-medium text-muted hover:text-fg">
+              <summary class="cursor-pointer font-medium text-muted">
                 {certCourses.length} course certificate{certCourses.length === 1 ? '' : 's'}
               </summary>
               <ol class="mt-3 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
                 {certCourses.map((course) => (
                   <li>
-                    <a href={course.data.url} rel="noopener noreferrer" class="prose-link" data-testid="course-link">
+                    <a href={course.data.url} rel="noopener noreferrer" class="link-prose" data-testid="course-link">
                       {course.data.title}
                     </a>
                     {(course.data.provider || course.data.completed) && (

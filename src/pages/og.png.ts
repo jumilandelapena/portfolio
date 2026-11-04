@@ -10,7 +10,7 @@ import { HERO, PERSON } from '../site.config';
 const font = (file: string): Buffer =>
   readFileSync(path.resolve(process.cwd(), 'node_modules/@fontsource/inter/files', file));
 
-/** Build-time Open Graph image: ink background, headline, name and role. */
+/** Build-time Open Graph image: Deep Slate background, headline, name and role. */
 export const GET: APIRoute = async () => {
   const svg = await satori(
     {
@@ -23,19 +23,19 @@ export const GET: APIRoute = async () => {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '72px',
-          backgroundColor: '#0f1318',
-          color: '#f7f8fa',
+          backgroundColor: '#0f172a',
+          color: '#f4f4f4',
           fontFamily: 'Inter',
         },
         children: [
           {
             type: 'div',
             props: {
-              style: { display: 'flex', alignItems: 'center', gap: '16px', fontSize: '28px', color: '#9aa5b1' },
+              style: { display: 'flex', alignItems: 'center', gap: '16px', fontSize: '28px', color: '#818ea0' },
               children: [
                 {
                   type: 'div',
-                  props: { style: { width: '14px', height: '14px', borderRadius: '7px', backgroundColor: '#2fb8a6' } },
+                  props: { style: { width: '14px', height: '14px', borderRadius: '7px', backgroundColor: '#22d3ee' } },
                 },
                 {
                   type: 'div',
@@ -60,7 +60,7 @@ export const GET: APIRoute = async () => {
           {
             type: 'div',
             props: {
-              style: { fontSize: '26px', color: '#9aa5b1', lineHeight: 1.4, maxWidth: '1000px' },
+              style: { fontSize: '26px', color: '#818ea0', lineHeight: 1.4, maxWidth: '1000px' },
               children: HERO.supporting,
             },
           },

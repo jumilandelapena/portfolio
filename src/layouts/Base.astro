@@ -29,8 +29,8 @@ const ogImage = absoluteUrl('/og.png');
     <meta name="author" content={PERSON.name} />
     <link rel="canonical" href={canonical} />
     <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f1318" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f8fa" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f172a" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f4f4" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content={SITE_TITLE} />
@@ -74,6 +74,7 @@ const ogImage = absoluteUrl('/og.png');
     </script>
   </head>
   <body class="flex min-h-dvh flex-col antialiased">
+    <div class="scroll-progress" aria-hidden="true" data-testid="scroll-progress"></div>
     <a href="#main" class="skip-link">
       Skip to content
     </a>
@@ -82,5 +83,8 @@ const ogImage = absoluteUrl('/og.png');
       <slot />
     </main>
     <Footer />
+    <script>
+      import '../scripts/motion';
+    </script>
   </body>
 </html>

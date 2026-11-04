@@ -19,7 +19,7 @@ for (const theme of ['dark', 'light'] as const satisfies readonly Theme[]) {
 
     test('first project card', async ({ home }) => {
       await expect(home.project('selfheal-playwright')).toHaveScreenshot(`project-${theme}.png`, {
-        mask: [home.project('selfheal-playwright').locator('time')],
+        mask: [home.project('selfheal-playwright').getByTestId('repo-meta')],
       });
     });
 

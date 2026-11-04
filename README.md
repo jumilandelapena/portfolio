@@ -63,6 +63,45 @@ language and last push date from the GitHub API (authenticated with
 `GITHUB_TOKEN` in CI). Any failure logs a warning and the page shows the static
 data only; the build never fails because of it.
 
+## Design
+
+Four named colours ("Tech & Futuristic") in `src/styles/global.css`; everything
+else is derived with `color-mix(in srgb)` so the palette cannot grow by accident,
+and no component carries a hex value.
+
+| Token         | Value     | Role                                                     |
+| ------------- | --------- | -------------------------------------------------------- |
+| `slate-deep`  | `#0F172A` | dark background; text on light; text on the cyan CTA     |
+| `cyan`        | `#22D3EE` | links, focus rings, active chips, passing rows, CTA fill |
+| `slate-muted` | `#64748B` | borders, dividers, icons, large text only                |
+| `white-crisp` | `#F4F4F4` | text on dark; light background                           |
+
+Derived tokens, with the WCAG contrast ratio of every text pair:
+
+| Theme | Pair                                                     | Ratio         |
+| ----- | -------------------------------------------------------- | ------------- |
+| dark  | body `#F4F4F4` on `#0F172A` / on surface `#1D2436`       | 16.23 / 14.06 |
+| dark  | muted small text `#818EA0` (slate + 20% white) on both   | 5.36 / 4.65   |
+| dark  | Muted Slate `#64748B` on bg, large text and icons only   | 3.75          |
+| dark  | cyan links on bg / on surface                            | 9.88 / 8.56   |
+| both  | CTA text Deep Slate on the cyan fill                     | 9.88          |
+| light | body `#0F172A` on `#F4F4F4` / on surface `#EBECEE`       | 16.23 / 15.10 |
+| light | muted small text `#5B6A80` (slate + 11% deep) on both    | 5.00 / 4.65   |
+| light | links and focus ring `#18738A` (cyan + 51% deep) on both | 4.95 / 4.60   |
+
+Bright cyan is 1.64:1 on white, so in the light theme it is reserved for
+non-text accents (the CTA fill, the progress bar) and text uses the darkened mix.
+
+Motion follows one easing (`--ease-out`) and two durations (150 ms colour,
+200 ms transform). Hover states also apply on `:focus-visible`; lift and glow are
+limited to `(hover: hover) and (pointer: fine)` so they never stick on touch.
+Section content reveals on scroll with CSS scroll-driven animations where
+supported (per-item `animation-range` offsets for the stagger), an
+IntersectionObserver fallback elsewhere, and nothing hidden without JavaScript
+or under `prefers-reduced-motion: reduce`. Only `transform`, `opacity` and colours
+animate. `src/scripts/motion.ts` is the single script: scrollspy
+(`aria-current="location"`), the scrolled header, and the reveal fallback.
+
 ## Testing strategy
 
 Short version; the long one is [docs/testing.md](docs/testing.md).
@@ -87,6 +126,8 @@ Short version; the long one is [docs/testing.md](docs/testing.md).
   baselines generated on Linux (CI workflow or the Playwright Docker image).
 - **Links.** Internal links block CI; external links run in a separate
   non-blocking job.
+- **Motion.** Hover and keyboard-focus colours, the lift and glow, scrollspy,
+  the scrolled header, reveals, reduced motion and a no-JavaScript run.
 - **Lighthouse CI.** Performance, Accessibility, Best Practices and SEO all
   asserted at 0.95 or better.
 

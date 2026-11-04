@@ -14,11 +14,11 @@ const education = await getCollection('education');
   title="Experience"
   intro="Four years at ClinicMind, from writing the help system to testing the product to building it."
 >
-  <ol class="relative ml-1 border-l border-line">
-    {roles.map((role) => (
-      <li id={`experience-${role.id}`} class="relative pb-10 pl-7 last:pb-0">
+  <ol class="reveal-stagger relative ml-1 border-l border-line">
+    {roles.map((role, index) => (
+      <li id={`experience-${role.id}`} class="relative pb-10 pl-7 last:pb-0" style={`--i: ${index}`}>
         <span
-          class="absolute top-2 -left-[5px] size-[9px] rounded-full border-2 border-bg bg-accent"
+          class="absolute top-2 -left-[5px] size-[9px] rounded-full border-2 border-bg bg-accent-fill"
           aria-hidden="true"
         />
         <h3 class="text-lg font-semibold">{role.data.role}</h3>
@@ -49,7 +49,7 @@ const education = await getCollection('education');
   </ol>
 
   <h3 class="mt-14 text-lg font-semibold">Education</h3>
-  <ul class="mt-4 space-y-4">
+  <ul class="reveal mt-4 space-y-4">
     {education.map((e) => (
       <li>
         <p class="m-0 max-w-none font-medium">{e.data.degree}</p>

@@ -11,23 +11,17 @@ const socials = (await getCollection('socials'))
 ---
 
 <Section id="contact" title="Contact" intro="For roles, contract work or a question about anything on this page.">
-  <div class="flex flex-wrap items-center gap-3">
-    <a
-      href={`mailto:${PERSON.email}`}
-      class="inline-flex items-center rounded-md bg-accent px-4 py-2 font-medium text-accent-fg hover:opacity-90"
-      data-testid="email-link"
-    >
-      Email me
-    </a>
-    {socials.map((s) => (
-      <a
-        href={s.data.url}
-        rel="me noopener noreferrer"
-        class="inline-flex items-center rounded-md border border-line px-4 py-2 font-medium hover:border-accent"
-      >
-        {s.data.label}
+  <div class="reveal">
+    <div class="flex flex-wrap items-center gap-3">
+      <a href={`mailto:${PERSON.email}`} class="btn btn-primary" data-testid="email-link">
+        Email me
       </a>
-    ))}
+      {socials.map((s) => (
+        <a href={s.data.url} rel="me noopener noreferrer" class="btn btn-outline">
+          {s.data.label}
+        </a>
+      ))}
+    </div>
+    <p class="mt-4 font-mono text-sm text-muted">{PERSON.email}</p>
   </div>
-  <p class="mt-4 font-mono text-sm text-muted">{PERSON.email}</p>
 </Section>
