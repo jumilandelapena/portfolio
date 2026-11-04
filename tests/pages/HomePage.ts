@@ -5,6 +5,8 @@ import { BasePage } from './BasePage';
 export class HomePage extends BasePage {
   readonly heroHeading: Locator;
   readonly heroProjectsLink: Locator;
+  readonly heroCta: Locator;
+  readonly scrollProgress: Locator;
   readonly statusPanel: Locator;
   readonly resumeLink: Locator;
   readonly projects: Locator;
@@ -26,6 +28,8 @@ export class HomePage extends BasePage {
     super(page);
     this.heroHeading = page.getByRole('heading', { level: 1 });
     this.heroProjectsLink = page.locator('#top').getByRole('link', { name: 'Projects', exact: true });
+    this.heroCta = page.getByTestId('hero-cta');
+    this.scrollProgress = page.getByTestId('scroll-progress');
     this.statusPanel = page.getByTestId('test-status');
     this.resumeLink = page.getByTestId('resume-link');
 
