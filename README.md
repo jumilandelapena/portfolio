@@ -1,84 +1,150 @@
-# Portfolio — Engr. Jumilan L. Dela Peña
+# Jumilan L. Dela Peña, portfolio
 
-Personal portfolio and online résumé for **Engr. Jumilan L. Dela Peña** — Full-Stack
-Developer and QA Automation Engineer at ClinicMind, licensed Electronics Engineer,
-based in Cagayan de Oro City, Philippines.
+[![CI](https://github.com/jumilandelapena/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/jumilandelapena/portfolio/actions/workflows/ci.yml)
+[![Deploy](https://github.com/jumilandelapena/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/jumilandelapena/portfolio/actions/workflows/deploy.yml)
+![Lighthouse budgets 95+](https://img.shields.io/badge/lighthouse-95%2B%20in%20every%20category-2fb8a6)
+![Playwright](https://img.shields.io/badge/tested%20with-Playwright-2fb8a6)
+
+The personal site of a software engineer with deep test-automation expertise,
+built so that the repository itself shows how I work: typed content, a test
+suite on the Page Object Model across five browsers, accessibility and visual
+checks, Lighthouse budgets, and a deploy that only happens when every gate is
+green. The page then shows the summary of the run that deployed it.
 
 **Live:** https://jumilandelapena.github.io/portfolio/
 
 ## Stack
 
-A static single-page site. No build step, no package manager, no framework —
-open `index.html` in a browser and it runs.
+| Layer        | Choice                                                                              |
+| ------------ | ----------------------------------------------------------------------------------- |
+| Framework    | [Astro](https://astro.build) 7, static output, no client framework                  |
+| Styling      | Tailwind CSS v4 through `@tailwindcss/vite`; tokens as CSS custom properties        |
+| Language     | TypeScript strict everywhere, including config files                                |
+| Content      | Astro content collections with Zod schemas, JSON data under `src/content/`          |
+| Images       | `astro:assets` (responsive WebP, real alt text); build-time OG image with satori    |
+| Tests        | Playwright, `@axe-core/playwright`, visual snapshots, Lighthouse CI                 |
+| Lint, format | ESLint flat config (typescript-eslint, astro, jsx-a11y), Prettier (astro, tailwind) |
+| CI/CD        | GitHub Actions; GitHub Pages deploy through the official Pages actions              |
+| Tooling      | pnpm 12 (`packageManager`), Node 26 LTS (`.nvmrc`), Dependabot                      |
 
-| | |
-|---|---|
-| Layout | Bootstrap 5.3 (CSS grid/utilities only; no Bootstrap JS) |
-| Icons | Bootstrap Icons |
-| Scroll reveal | AOS |
-| Hero typing effect | Typed.js |
-| Skill bar triggers | Waypoints |
-| Contact form | Embedded Google Form |
-| Hosting | GitHub Pages, served from `main` |
+The only client-side JavaScript is the theme toggle and the two filter groups,
+each a few lines of plain TypeScript.
 
-## Structure
+## Architecture
 
 ```
-index.html              the entire site — hero, about, skills, résumé,
-                        work impact, projects, certificates, contact
-assets/
-  css/main.css          all styling, including the blue theme override
-                        at the end of the file
-  js/main.js            nav, scrollspy, reveal-on-scroll, skill bars
-  img/profile/          profile photos
-  files/resume.pdf      downloadable résumé
-  vendor/               third-party CSS/JS, pruned to only what the page loads
+src/
+├─ site.config.ts        SITE, BASE, person, hero copy, url() helper
+├─ content.config.ts     Zod schema for every collection
+├─ content/              the data: experience, projects, impact, skills,
+│                        certifications, courses, disciplines, socials, education
+├─ layouts/Base.astro    <head>, no-flash theme script, skip link, landmarks
+├─ components/           one component per section + Header, Footer, ThemeToggle
+├─ pages/                index.astro, 404.astro, og.png.ts, robots.txt.ts, site.webmanifest.ts
+├─ lib/                  status (CI summary), github (optional repo metadata), format
+├─ scripts/filter.ts     the client-side filter
+└─ styles/global.css     design tokens (@theme), base styles, the one animation
+tests/                   Playwright suite, see docs/testing.md
+scripts/                 write-test-status.ts, gen-favicons.ts
+.github/workflows/       ci.yml, deploy.yml, snapshots.yml
 ```
+
+### How content collections work
+
+Every list on the page is rendered from `src/content/`. `src/content.config.ts`
+declares a collection per folder or file with a Zod schema, so a typo in a data
+file fails `pnpm build` with a message that names the file and field. Components
+call `getCollection()` and never contain content. Cross-references use
+`reference()`: a skill points at the projects and roles where it was used, a
+course points at its certification, a discipline at its certificates.
+
+At build time `src/lib/github.ts` optionally fetches each project's primary
+language and last push date from the GitHub API (authenticated with
+`GITHUB_TOKEN` in CI). Any failure logs a warning and the page shows the static
+data only; the build never fails because of it.
+
+## Testing strategy
+
+Short version; the long one is [docs/testing.md](docs/testing.md).
+
+- **Page Object Model.** `tests/pages/` holds the locators, `tests/fixtures/`
+  the custom `test` with a ready `home` page and a `theme` option. Locators are
+  role-based (`getByRole`, `getByTestId`); no CSS class selectors.
+- **Browsers.** Desktop Chromium, Firefox and WebKit plus Pixel 7 and iPhone 14
+  emulation, all against the production build under `/portfolio`.
+- **End-to-end.** Section links and hashes, the header logo, the skip link, the
+  theme toggle (follows the OS, persists, applies before the body exists so
+  nothing flashes), project and certificate filters, external `rel`, the
+  résumé download, the 404 page with a real 404 status, the status panel.
+- **Data integrity.** Every entry of every collection is found on the page with
+  its exact link; the Work Impact numbers, as-of date and source match the data
+  file.
+- **Accessibility.** axe-core (WCAG 2.1 A/AA + best practice) on every page in
+  both themes, failing on serious or critical violations; a keyboard-only walk
+  that asserts a visible focus ring at each stop.
+- **Visual regression.** `toHaveScreenshot` for the hero and status panel, a
+  project card, the impact numbers and the first certification, Chromium only,
+  baselines generated on Linux (CI workflow or the Playwright Docker image).
+- **Links.** Internal links block CI; external links run in a separate
+  non-blocking job.
+- **Lighthouse CI.** Performance, Accessibility, Best Practices and SEO all
+  asserted at 0.95 or better.
 
 ## Local development
 
-No tooling required:
-
-```sh
-git clone https://github.com/jumilandelapena/portfolio.git
-cd portfolio
+```bash
+corepack enable          # once; picks up pnpm@12.16.1 from package.json
+pnpm install
+pnpm dev                 # http://localhost:4321/portfolio/
+pnpm build && pnpm preview
+pnpm lint                # eslint + prettier --check
+pnpm typecheck           # astro check + tsc --noEmit
+pnpm test                # builds, previews and runs the Playwright suite
+pnpm lhci                # Lighthouse CI against the preview
 ```
 
-Then open `index.html` directly, or serve it if you want the embedded Google
-Form and relative URLs to behave exactly as they do in production:
+Node 26 is the version in `.nvmrc` and in CI; Node 24 works too.
 
-```sh
-python -m http.server 8000    # or: npx serve
-```
+## Deploy flow
 
-## Deploying
+`deploy.yml` runs on every push to `main`:
 
-Pushing to `main` runs `.github/workflows/pages.yml`, which uploads the
-repository root and deploys it to GitHub Pages (the repository's Pages source is
-"GitHub Actions", so a push without this workflow publishes nothing). The run
-can also be started by hand from the Actions tab (`workflow_dispatch`).
+1. **verify:** lint, typecheck, build, Playwright on all projects, Lighthouse CI,
+   then `scripts/write-test-status.ts` summarises the run into
+   `test-status.json` and uploads it as an artifact.
+2. **deploy** (only if verify passed): downloads the summary into `public/`,
+   builds again so the status panel carries this run's numbers, and publishes
+   `dist/` with `actions/upload-pages-artifact` and `actions/deploy-pages`.
 
-## Notes
+The Pages source for the repository is "GitHub Actions"; no other setting is
+needed. Pull requests run the same gates in `ci.yml` without deploying.
 
-- The **Work Impact** numbers (merged merge requests, commits, issues) are a
-  snapshot of Jumi's GitLab activity at ClinicMind taken on 2026-11-04. They
-  are hard-coded in `index.html`; refresh them by hand when updating the site.
-- The **Projects** section links to public GitHub repositories; keep the
-  descriptions in sync with each repository's README.
+## Adding content
 
-- `assets/vendor/` is intentionally trimmed to the ten files the page actually
-  requests. If you add a component that needs Swiper, GLightbox, Isotope or
-  Bootstrap's JS, restore that bundle from the upstream template *and* add its
-  `<script>` tag back — `assets/js/main.js` no longer initialises them.
-- The colour palette is a theme override block at the bottom of
-  `assets/css/main.css`, which intentionally wins over the variables declared at
-  the top of the file. Edit the override, not the originals.
+Edit a data file, run `pnpm build`, open a pull request. No markup changes.
 
-## Credits
+- **A project:** add `src/content/projects/<id>.json` with `title`, `repo`,
+  `url`, `tagline`, `areas` (`testing`, `ai`, `api`, `web`), `order` and, for a
+  featured entry, `featured: true`, `problem`, `built`, `testing`, `highlights`,
+  `stack` and `links`. The id is the file name and is what skills reference.
+- **A certification:** add `src/content/certifications/<id>.json` (`title`,
+  `provider`, `kind`, `url`, `areas`, `year`, `description`, `order`), then its
+  courses to `src/content/courses.json` with `"certification": "<id>"`.
+- **An impact stat:** edit `src/content/impact/clinicmind.json`; update `asOf`
+  in the same change. The data-integrity test fails if the page and file differ.
+- **A role:** add `src/content/experience/<id>.json`; link skills to it by id.
 
-Built on the [SnapFolio](https://bootstrapmade.com/snapfolio-bootstrap-portfolio-template/)
-template. Designed by [BootstrapMade](https://bootstrapmade.com/), used under its
-template licence — the footer credit on `index.html` is a condition of the free
-licence.
+The content inventory used for the rebuild is in
+[docs/content-inventory.md](docs/content-inventory.md).
 
-Site content, copy and images © Jumilan L. Dela Peña.
+## Conventions
+
+- Conventional Commits: `feat:`, `fix:`, `test:`, `ci:`, `docs:`, `chore:`.
+- Work on a branch, open a pull request, let CI go green, merge. `main` deploys.
+- `TODO(jumi):` marks a fact still to confirm; they live in data files and
+  comments, never in rendered copy.
+
+## Licence
+
+Code is MIT licensed, see [LICENSE](LICENSE). The site's content, text, data
+files, résumé and photographs are © Jumilan L. Dela Peña.
