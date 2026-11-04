@@ -1,9 +1,11 @@
 import { existsSync, readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 
 import { testStatusSchema, type TestStatus } from './test-status.schema.ts';
 
-const STATUS_FILE = fileURLToPath(new URL('../../public/test-status.json', import.meta.url));
+// Resolved from the project root, not from this module: at build time the module is a bundled
+// chunk under dist/, so import.meta.url would point at the wrong place.
+const STATUS_FILE = path.resolve(process.cwd(), 'public', 'test-status.json');
 
 /**
  * The CI summary for the commit being built, or `null` when none was written
