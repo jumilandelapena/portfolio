@@ -35,24 +35,17 @@ const socials = (await getCollection('socials')).sort((a, b) => a.data.order - b
     </h1>
     <p class="mt-5 text-lg text-muted">{HERO.supporting}</p>
     <div class="mt-8 flex flex-wrap gap-3">
-      <a
-        href={url('#projects')}
-        class="inline-flex items-center rounded-md bg-accent px-4 py-2 font-medium text-accent-fg hover:opacity-90"
-      >
+      <a href={url('#projects')} class="btn btn-primary" data-testid="hero-cta">
         Projects
       </a>
-      <a
-        href={url(RESUME_PATH)}
-        class="inline-flex items-center rounded-md border border-line px-4 py-2 font-medium hover:border-accent"
-        data-testid="resume-link"
-      >
+      <a href={url(RESUME_PATH)} class="btn btn-outline" data-testid="resume-link">
         Résumé (PDF)
       </a>
     </div>
     <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm" aria-label="Profiles">
       {socials.map((s) => (
         <li>
-          <a href={s.data.url} rel="me noopener noreferrer" class="text-muted hover:text-accent">
+          <a href={s.data.url} rel="me noopener noreferrer" class="link text-muted">
             {s.data.label}
           </a>
         </li>

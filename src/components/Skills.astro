@@ -26,9 +26,9 @@ const resolved = await Promise.all(
   title="Skills"
   intro="Grouped by what I reach for first. Each skill links to the project or role where it was used; there are no self-rated percentages here."
 >
-  <div class="grid gap-10 md:grid-cols-2">
-    {resolved.map(({ group, items }) => (
-      <div>
+  <div class="reveal-stagger grid gap-10 md:grid-cols-2">
+    {resolved.map(({ group, items }, index) => (
+      <div style={`--i: ${index}`}>
         <h3 class="text-lg font-semibold">{group.data.title}</h3>
         <ul class="mt-4 divide-y divide-line border-y border-line">
           {items.map(({ item, projects, experience }) => (
@@ -41,10 +41,10 @@ const resolved = await Promise.all(
                   {[
                     ...projects.map((p) => ({ href: `#project-${p.id}`, label: p.data.title })),
                     ...experience.map((e) => ({ href: `#experience-${e.id}`, label: e.data.role })),
-                  ].map((link, index) => (
+                  ].map((link, i) => (
                     <>
-                      {index > 0 && ', '}
-                      <a href={url(link.href)} class="underline decoration-line underline-offset-4 hover:text-accent">
+                      {i > 0 && ', '}
+                      <a href={url(link.href)} class="link-prose">
                         {link.label}
                       </a>
                     </>

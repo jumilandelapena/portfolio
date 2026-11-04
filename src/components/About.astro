@@ -11,7 +11,7 @@ const languages = ['English', 'Filipino'];
 ---
 
 <Section id="about" title="About">
-  <div class="grid gap-8 sm:grid-cols-[10rem_minmax(0,1fr)]">
+  <div class="reveal grid gap-8 sm:grid-cols-[10rem_minmax(0,1fr)]">
     <Image
       src={about}
       alt={`${PERSON.name} in a navy blazer and white shirt`}
@@ -47,7 +47,7 @@ const languages = ['English', 'Filipino'];
         <div>
           <dt class="font-mono text-xs text-muted">Résumé</dt>
           <dd class="mt-0.5">
-            <a href={url(RESUME_PATH)} class="prose-link">
+            <a href={url(RESUME_PATH)} class="link-prose">
               Download the PDF
             </a>
           </dd>
