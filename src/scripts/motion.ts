@@ -17,10 +17,13 @@ function onScroll(fn: () => void): void {
       window.requestAnimationFrame(() => {
         fn();
         ticking = false;
+        // A second pass one frame later catches layout that settled after the event.
+        window.requestAnimationFrame(fn);
       });
     },
     { passive: true },
   );
+  window.addEventListener('scrollend', fn, { passive: true });
   fn();
 }
 

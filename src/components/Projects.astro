@@ -51,7 +51,7 @@ const meta = new Map(await Promise.all(all.map(async (p) => [p.id, await fetchRe
         <article
           id={`project-${project.id}`}
           data-areas={project.data.areas.join(' ')}
-          class="panel flex flex-col rounded-md bg-surface/40 p-5"
+          class="panel flex min-w-0 flex-col rounded-md bg-surface/40 p-5"
           style={`--i: ${index}`}
         >
           <h3 class="text-lg font-semibold">
@@ -59,7 +59,7 @@ const meta = new Map(await Promise.all(all.map(async (p) => [p.id, await fetchRe
               {project.data.title}
             </a>
           </h3>
-          <p class="mt-1 max-w-none truncate font-mono text-xs text-muted" data-testid="repo-meta">
+          <p class="mt-1 min-w-0 max-w-none truncate font-mono text-xs text-muted" data-testid="repo-meta">
             {project.data.repo}
             {m?.language && <> · {m.language}</>}
             {m?.pushedAt && (

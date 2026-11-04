@@ -122,7 +122,7 @@ test.describe('hover and focus feedback', () => {
       await expect(link).toHaveCSS('color', DEEP_SLATE);
       await link.hover();
       await settleTransitions(link);
-      expect(await channels(link, 'color')).toEqual([24, 115, 138]);
+      await expect.poll(() => channels(link, 'color'), { message: 'link colour after hover' }).toEqual([24, 115, 138]);
 
       await expect(home.heroCta).toHaveCSS('background-color', CYAN);
       await expect(home.heroCta).toHaveCSS('color', DEEP_SLATE);

@@ -44,4 +44,13 @@ test.describe('navigation', () => {
     expect(response.status()).toBe(200);
     expect(response.headers()['content-type']).toContain('application/pdf');
   });
+
+  test('the page never overflows horizontally', async ({ home, page }) => {
+    await expect(home.heroHeading).toBeVisible();
+    const overflow = await page.evaluate(() => ({
+      scrollWidth: document.documentElement.scrollWidth,
+      clientWidth: document.documentElement.clientWidth,
+    }));
+    expect(overflow.scrollWidth, JSON.stringify(overflow)).toBeLessThanOrEqual(overflow.clientWidth);
+  });
 });
