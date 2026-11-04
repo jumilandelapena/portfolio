@@ -59,7 +59,11 @@ panel.
 
 `tests/a11y/keyboard.spec.ts` tabs through the skip link, the section links and
 the theme toggle, asserting a visible focus ring on each stop, then operates the
-toggle and a filter chip with the keyboard alone.
+toggle and a filter chip with the keyboard alone. Headless WebKit never moves
+Tab focus to links (Safari's "press Tab to highlight each item" setting is off and
+cannot be toggled from Playwright), so on WebKit the link walk is skipped and a
+separate test checks every control it can reach, plus the ring on a link focused
+programmatically.
 
 ## Visual regression
 

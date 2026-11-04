@@ -10,11 +10,13 @@ test.describe('internal links', () => {
       if (checked.has(link.href)) continue;
       checked.add(link.href);
 
-      const hash = link.href.includes('#') ? link.href.slice(link.href.indexOf('#') + 1) : '';
-      const pathPart = link.href.includes('#') ? link.href.slice(0, link.href.indexOf('#')) : link.href;
+      const hashAt = link.href.indexOf('#');
+      const hash = hashAt >= 0 ? link.href.slice(hashAt + 1) : '';
+      const pathPart = hashAt >= 0 ? link.href.slice(0, hashAt) : link.href;
 
       if (hash) {
-        expect.soft(await page.locator(`#${CSS.escape(hash)}`).count(), `#${hash} from "${link.text}"`).toBe(1);
+        expect.soft(hash, `hash from "${link.text}"`).toMatch(/^[A-Za-z][\w-]*$/);
+        expect.soft(await page.locator(`[id="${hash}"]`).count(), `#${hash} from "${link.text}"`).toBe(1);
       }
       if (pathPart && pathPart !== '/portfolio/') {
         const response = await request.get(pathPart);

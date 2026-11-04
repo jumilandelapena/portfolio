@@ -24,7 +24,7 @@ test.describe('content collections render completely', () => {
 
   test('every certification and every course link is present and exact', async ({ home }) => {
     expect(content.certifications.length).toBe(7);
-    expect(content.courses.length).toBe(55);
+    expect(content.courses.length).toBe(53);
     for (const cert of content.certifications) {
       const item = home.certification(cert.id);
       await expect(item, cert.id).toBeAttached();

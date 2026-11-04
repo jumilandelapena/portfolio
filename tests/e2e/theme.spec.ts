@@ -21,17 +21,19 @@ test.describe('theme', () => {
     await home.themeToggle.click();
     expect(await home.currentTheme()).toBe('light');
     await expect(home.themeToggle).toHaveAttribute('aria-label', 'Switch to dark theme');
+    expect(await page.evaluate(() => window.localStorage.getItem('theme'))).toBe('light');
 
     await page.reload();
     expect(await home.currentTheme()).toBe('light');
-    expect(await page.evaluate(() => window.localStorage.getItem('theme'))).toBe('light');
+    await expect(home.themeToggle).toHaveAttribute('aria-label', 'Switch to dark theme');
   });
 
-  test('a stored theme is applied before the document is parsed, so nothing flashes', async ({ page }) => {
+  test('a stored theme is applied before the body exists, so nothing flashes', async ({ page }) => {
     const home = new HomePage(page);
     await home.rememberTheme('light');
-    // Record the attribute at the earliest observable moment: when the <head> script has run but
-    // before any of the body exists.
+    // Record the attribute the moment <body> is inserted: the <head> script has run,
+    // nothing has been painted yet. Init scripts run before <html> exists, so the
+    // observer watches the document itself.
     await page.addInitScript(() => {
       const observer = new MutationObserver(() => {
         if (document.body) {
@@ -40,7 +42,7 @@ test.describe('theme', () => {
           observer.disconnect();
         }
       });
-      observer.observe(document.documentElement, { childList: true });
+      observer.observe(document, { childList: true, subtree: true });
     });
     await home.goto();
     const themeAtBody = await page.evaluate(
@@ -48,7 +50,7 @@ test.describe('theme', () => {
     );
     expect(themeAtBody).toBe('light');
 
-    // The theme script must sit in <head>, before the stylesheet.
+    // The theme script must sit in <head>, before any stylesheet.
     const html = await page.content();
     const scriptIndex = html.indexOf("localStorage.getItem('theme')");
     const styleIndex = html.search(/<style|<link[^>]+rel="stylesheet"/);

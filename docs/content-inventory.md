@@ -9,7 +9,7 @@ migrate are checked by the data-integrity tests in `tests/`.
 
 | Area | Items on `main` | Plan |
 |---|---|---|
-| Certificate links (7 specializations/cards, 55 courses) | 62 URLs | migrate exactly into `src/content/certifications/` and `courses/` |
+| Certificate links (6 specialization or certificate pages, 53 courses) | 59 URLs | migrate exactly into `src/content/certifications/` and `courses/` |
 | Project links (4 featured + 6 earlier + "all repositories") | 16 URLs | migrate exactly into `src/content/projects/`; add this repo as a project |
 | Work Impact numbers | 440 / 717 / 203 / 399 (+ 256, 184, 98, 180) | migrate exactly into `src/content/impact/` with `asOf: 2026-11-04`, `source: GitLab contributions at ClinicMind` |
 | Experience entries | 5 roles, 1 degree | migrate copy; QA Automation dates become Sep 2025 - May 2026 (brief), Software Engineer May 2026 - present |

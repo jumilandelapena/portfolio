@@ -19,13 +19,17 @@ test.describe('navigation', () => {
   });
 
   test('the header logo links back to the base path', async ({ home }) => {
-    const logo = home.header.getByRole('link', { name: /home$/i });
-    await expect(logo).toHaveAttribute('href', '/portfolio/');
+    await expect(home.logo).toHaveAttribute('href', '/portfolio/');
   });
 
-  test('the skip link moves focus to the main landmark', async ({ home, page }) => {
-    await page.keyboard.press('Tab');
+  test('the skip link appears on focus and moves focus to the main landmark', async ({ home, page, browserName }) => {
+    // Headless WebKit does not move Tab focus to links (see tests/a11y/keyboard.spec.ts), so it
+    // focuses the link directly; the behaviour under test is the same from that point on.
+    if (browserName === 'webkit') await home.skipLink.focus();
+    else await page.keyboard.press('Tab');
     await expect(home.skipLink).toBeFocused();
+    await expect(home.skipLink).toBeInViewport();
+
     await page.keyboard.press('Enter');
     await expect(home.main).toBeFocused();
   });
