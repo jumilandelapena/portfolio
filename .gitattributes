@@ -1,0 +1,11 @@
+# Keep LF in every working copy so Prettier's endOfLine check passes on Windows too.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ico binary

@@ -128,7 +128,7 @@ const meta = new Map(await Promise.all(all.map(async (p) => [p.id, await fetchRe
             <a
               href={project.data.url}
               rel="noopener noreferrer"
-              class="font-mono text-sm font-semibold break-all hover:text-accent"
+              class="font-mono text-sm font-semibold break-words [overflow-wrap:anywhere] hover:text-accent"
             >
               {project.data.title}
             </a>
