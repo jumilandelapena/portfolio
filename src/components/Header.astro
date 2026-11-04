@@ -1,5 +1,5 @@
 ---
-import { PERSON, url } from '../site.config';
+import { url } from '../site.config';
 
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -16,11 +16,7 @@ const links = [
 
 <header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
   <div class="mx-auto flex max-w-site items-center gap-4 px-4 py-3 sm:px-6">
-    <a
-      href={url('/')}
-      class="shrink-0 font-mono text-sm font-semibold tracking-tight text-fg hover:text-accent"
-      aria-label={`${PERSON.name}, home`}
-    >
+    <a href={url('/')} class="shrink-0 font-mono text-sm font-semibold tracking-tight text-fg hover:text-accent">
       jumi<span class="text-accent">.</span>
     </a>
     <nav aria-label="Sections" class="min-w-0 flex-1">
