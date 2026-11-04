@@ -1,0 +1,9 @@
+{
+  "title": "e-plantShopping",
+  "repo": "jumilandelapena/e-plantShopping",
+  "url": "https://github.com/jumilandelapena/e-plantShopping",
+  "tagline": "React and Redux plant shop with product listing, cart state and checkout flow, from the IBM React course.",
+  "stack": ["React", "Redux"],
+  "areas": ["web"],
+  "order": 13
+}

@@ -1,0 +1,110 @@
+{
+  "title": "Work impact at ClinicMind",
+  "intro": "What I have shipped as a Software Engineer and QA Automation Engineer on ClinicMind's electronic health record (EHR) platform.",
+  "asOf": "2026-11-04",
+  "source": "GitLab contributions at ClinicMind",
+  "period": "October 2025 to 4 November 2026",
+  "stats": [
+    {
+      "value": 440,
+      "label": "merge requests merged",
+      "detail": "256 in the EHR platform, 184 in the test suite"
+    },
+    {
+      "value": 717,
+      "label": "commits on main",
+      "detail": "98 merge requests landed in October 2026 alone"
+    },
+    {
+      "value": 203,
+      "label": "issues reported",
+      "detail": "180 already resolved by the team"
+    },
+    {
+      "value": 399,
+      "label": "assigned tickets closed",
+      "detail": "bug fixes, QA verification and features"
+    }
+  ],
+  "roles": [
+    {
+      "title": "Software Engineer, EHR web platform",
+      "period": "May 2026 to present",
+      "stack": ["Angular", "TypeScript", "Node.js", "MongoDB", "Playwright e2e", "Storybook", "GitLab CI"],
+      "highlights": [
+        {
+          "lead": "Help Center and guided walkthroughs.",
+          "text": "Built the walkthrough engine on CDK overlays (spotlight, step cards, skip versus complete), the Page Guides admin editor with live-page anchor picking, per-user progress and funnel events, and the \"Ask AI\" feedback loop."
+        },
+        {
+          "lead": "Knowledge Checks for staff training.",
+          "text": "Managers, manager groups, weekly and overdue summaries delivered as tasks, a question review queue, and learning paths that assign their knowledge-check steps."
+        },
+        {
+          "lead": "Practice Settings and configuration.",
+          "text": "Advanced settings grid read and save on the Node.js back end with rollout flags, a pinned \"Find a setting\" search, and chip overflow handling."
+        },
+        {
+          "lead": "Patient-facing flows.",
+          "text": "Email-code sign-in and paperwork steps for public appointment booking, CareConnect portal draft preservation and message threading, telehealth fixes, and portal access-link error messages."
+        },
+        {
+          "lead": "Security and data integrity.",
+          "text": "Owner emails after lock-outs, passkey and cookie scoping on dev hosts, PHI audit logging for dashboards and AI Scribe, and fixes for cross-practice chart and mailbox leaks."
+        },
+        {
+          "lead": "Reliability.",
+          "text": "Server-sent-event routes that no longer hang the pod on a throw, a reload page instead of a blank app on failed startup, deferred migrations that finish every step, and a run of timezone and daylight-saving corrections."
+        },
+        {
+          "lead": "Care plans and scheduling.",
+          "text": "Twenty-plus fixes in two months: visit patterns, templates, attendance and billing alignment, slot widths, drag-and-drop flicker and placeholder cards."
+        },
+        {
+          "lead": "Engineering tooling.",
+          "text": "Merge-request readiness evidence, Storybook screenshot checks, pre-merge periodic spec runs, startup-pin checks and lint coverage for tools and tests."
+        }
+      ]
+    },
+    {
+      "title": "QA Automation Engineer, Playwright smoke-test suite",
+      "period": "September 2025 to May 2026",
+      "stack": [
+        "Playwright",
+        "TypeScript",
+        "Page objects",
+        "Fixtures",
+        "GitLab CI",
+        "Flaky-test forensics",
+        "Exploratory testing"
+      ],
+      "highlights": [
+        {
+          "lead": "ChiroNote test suite, built from zero.",
+          "text": "Forty-plus merge requests covering SuperNote-to-ChiroNote salting for vitals, cranial nerves, nerve-root assessment, balance, vestibular and cognitive exams, posture, subluxation, every spinal and extremity region, manual muscle testing, assessment and plan, hard sign-off, chart-widget sync and appointment-type section logic."
+        },
+        {
+          "lead": "Migration to the new Angular front end.",
+          "text": "Converted chart components (nine parts), the XDirect chart widget, field and macro manipulation (sixteen parts), spine diagram, problem list, presenting-problems link-back, sticky notes and care-plan specs."
+        },
+        {
+          "lead": "Suite architecture.",
+          "text": "Introduced shared fixtures for opening notes and loading macros, section-expansion helpers and parameterised page-object locators, then applied them across regression, care-plan and configuration specs."
+        },
+        {
+          "lead": "Pipeline health across four environments.",
+          "text": "Fixed CI timeouts, nightly date-boundary failures, hydration and dead-click races, iframe selector drift, and version-gated specs for releases v50 to v56 (and removed the gates once releases rolled out)."
+        },
+        {
+          "lead": "Defect discovery.",
+          "text": "Over 200 issues filed, including duplicate patient account numbers, narrative data that failed to salt or render, linkback navigation bugs, telehealth session problems and Help Center editor defects."
+        },
+        {
+          "lead": "Release coverage inside the platform repo.",
+          "text": "Hermetic smoke coverage for ChiroNote validations, formulary and medication administration, fax-on-completion and schedule visuals, plus an auth bootstrap that isolates one rejected login from the rest of the run."
+        }
+      ]
+    }
+  ],
+  "footnote": "ClinicMind's repositories are private, so merge requests and issues are not linked here. Counts were taken from the GitLab API and exclude open drafts. ClinicMind, ChiroNote and CareConnect are product names of ClinicMind."
+}

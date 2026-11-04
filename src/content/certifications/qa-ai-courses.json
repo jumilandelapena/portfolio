@@ -1,0 +1,9 @@
+{
+  "title": "Test automation, CI/CD and AI engineering courses",
+  "provider": "Vanderbilt University, Packt and Coursera",
+  "kind": "course-set",
+  "areas": ["qa", "ai"],
+  "year": 2026,
+  "description": "Focused courses behind the day-to-day work: fast and reliable Playwright testing, CI/CD pipelines for test automation on Jenkins and GitHub Actions, AI agents in TypeScript and JavaScript, and prompt engineering for large language models.",
+  "order": 2
+}

@@ -1,0 +1,396 @@
+[
+  {
+    "id": "meta-intro-front-end",
+    "title": "Introduction to Front-End Development",
+    "url": "https://www.coursera.org/account/accomplishments/verify/2HHYHWK4O65C",
+    "certification": "meta-full-stack",
+    "completed": "2026-04-19",
+    "order": 1
+  },
+  {
+    "id": "meta-version-control",
+    "title": "Version Control",
+    "url": "https://www.coursera.org/account/accomplishments/verify/CJH7WHAH5LTF",
+    "certification": "meta-full-stack",
+    "completed": "2026-04-26",
+    "order": 2
+  },
+  {
+    "id": "meta-html-css",
+    "title": "HTML and CSS in depth",
+    "url": "https://www.coursera.org/account/accomplishments/verify/1DIZ97XYI7AJ",
+    "certification": "meta-full-stack",
+    "completed": "2026-05-25",
+    "order": 3
+  },
+  {
+    "id": "meta-react-basics",
+    "title": "React Basics",
+    "url": "https://www.coursera.org/account/accomplishments/verify/9MKT03BM08LL",
+    "certification": "meta-full-stack",
+    "completed": "2026-07-06",
+    "order": 4
+  },
+  {
+    "id": "meta-advanced-react",
+    "title": "Advanced React",
+    "url": "https://www.coursera.org/account/accomplishments/verify/6FN4S1FNFDN6",
+    "certification": "meta-full-stack",
+    "completed": "2026-08-26",
+    "order": 5
+  },
+  {
+    "id": "meta-python",
+    "title": "Programming in Python",
+    "url": "https://www.coursera.org/account/accomplishments/verify/M9RKGD5IQTE8",
+    "certification": "meta-full-stack",
+    "completed": "2026-09-07",
+    "order": 6
+  },
+  {
+    "id": "meta-databases",
+    "title": "Introduction to Databases for Back-End Development",
+    "url": "https://www.coursera.org/account/accomplishments/verify/7NDX6Z4F34PZ",
+    "certification": "meta-full-stack",
+    "completed": "2026-09-26",
+    "order": 7
+  },
+  {
+    "id": "meta-django",
+    "title": "Django Web Framework",
+    "url": "https://www.coursera.org/account/accomplishments/verify/WEZH1CLQBA4A",
+    "certification": "meta-full-stack",
+    "completed": "2026-10-24",
+    "order": 8
+  },
+  {
+    "id": "meta-apis",
+    "title": "APIs",
+    "url": "https://www.coursera.org/account/accomplishments/verify/W4GWG8OVW754",
+    "certification": "meta-full-stack",
+    "completed": "2026-11-04",
+    "order": 9
+  },
+
+  {
+    "id": "playwright-power-techniques",
+    "title": "Playwright Power Techniques: Fast and Reliable Web Testing",
+    "url": "https://www.coursera.org/account/accomplishments/verify/V77NBOTF9AS4",
+    "certification": "qa-ai-courses",
+    "provider": "Coursera",
+    "completed": "2026-01-31",
+    "order": 1
+  },
+  {
+    "id": "cicd-test-automation",
+    "title": "CI/CD for Test Automation: Jenkins & GitHub Actions",
+    "url": "https://www.coursera.org/account/accomplishments/verify/RGEIG0JMR0FV",
+    "certification": "qa-ai-courses",
+    "provider": "Packt",
+    "completed": "2026-03-22",
+    "order": 2
+  },
+  {
+    "id": "ai-agents-typescript",
+    "title": "AI Agents in TypeScript/JavaScript with Generative AI",
+    "url": "https://www.coursera.org/account/accomplishments/verify/GXNQYFWYO2YV",
+    "certification": "qa-ai-courses",
+    "provider": "Vanderbilt University",
+    "completed": "2026-04-02",
+    "order": 3
+  },
+  {
+    "id": "prompt-engineering-chatgpt",
+    "title": "Prompt Engineering for ChatGPT",
+    "url": "https://www.coursera.org/account/accomplishments/verify/F00XAXU84CU3",
+    "certification": "qa-ai-courses",
+    "provider": "Vanderbilt University",
+    "completed": "2026-04-05",
+    "order": 4
+  },
+
+  {
+    "id": "gai-start-writing-prompts",
+    "title": "Start Writing Prompts like a Pro",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/8OW7XLUDN1GO",
+    "certification": "google-ai-prompting",
+    "order": 1
+  },
+  {
+    "id": "gai-design-prompts",
+    "title": "Design Prompts for Everyday Work Tasks",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/LT5MEOLKXFKQ",
+    "certification": "google-ai-prompting",
+    "order": 2
+  },
+  {
+    "id": "gai-speed-up-analysis",
+    "title": "Speed Up Data Analysis and Presentation Building",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/7U7UK5ARIDTJ",
+    "certification": "google-ai-prompting",
+    "order": 3
+  },
+  {
+    "id": "gai-creative-partner",
+    "title": "Use AI as a Creative or Expert Partner",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/X515DEDXU0LK",
+    "certification": "google-ai-prompting",
+    "order": 4
+  },
+
+  {
+    "id": "ibm-intro-software-engineering",
+    "title": "Introduction to Software Engineering",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/3WW84UOB28PG",
+    "certification": "ibm-full-stack",
+    "order": 1
+  },
+  {
+    "id": "ibm-intro-cloud",
+    "title": "Introduction to Cloud Computing",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/KDUMSK1LN56C",
+    "certification": "ibm-full-stack",
+    "order": 2
+  },
+  {
+    "id": "ibm-intro-html-css-js",
+    "title": "Introduction to HTML, CSS, & JavaScript",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/QWGE8JK19YY7",
+    "certification": "ibm-full-stack",
+    "order": 3
+  },
+  {
+    "id": "ibm-git-github",
+    "title": "Getting Started with Git and GitHub",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/6HUZV3O7G2GU",
+    "certification": "ibm-full-stack",
+    "order": 4
+  },
+  {
+    "id": "ibm-react",
+    "title": "Developing Front-End Apps with React",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/R5R2XJ320UVB",
+    "certification": "ibm-full-stack",
+    "order": 5
+  },
+  {
+    "id": "ibm-node-express",
+    "title": "Developing Back-End Apps with Node.js and Express",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/8J83LTJLL4BN",
+    "certification": "ibm-full-stack",
+    "order": 6
+  },
+  {
+    "id": "ibm-python",
+    "title": "Python for Data Science, AI & Development",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/E08IMYM5LS1T",
+    "certification": "ibm-full-stack",
+    "order": 7
+  },
+  {
+    "id": "ibm-flask",
+    "title": "Developing AI Applications with Python and Flask",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/M60EKDRSI9SE",
+    "certification": "ibm-full-stack",
+    "order": 8
+  },
+  {
+    "id": "ibm-django",
+    "title": "Django Application Development with SQL and Databases",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/AIFCEJER5G80",
+    "certification": "ibm-full-stack",
+    "order": 9
+  },
+  {
+    "id": "ibm-containers",
+    "title": "Introduction to Containers w/ Docker, Kubernetes & OpenShift",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/J8L8Z4K1J194",
+    "certification": "ibm-full-stack",
+    "order": 10
+  },
+  {
+    "id": "ibm-microservices",
+    "title": "Application Development using Microservices and Serverless",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/D1QRN82FOP8G",
+    "certification": "ibm-full-stack",
+    "order": 11
+  },
+  {
+    "id": "ibm-capstone",
+    "title": "Full Stack Application Development Capstone Project",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/A9M1HXS0XNDU",
+    "certification": "ibm-full-stack",
+    "order": 12
+  },
+  {
+    "id": "ibm-assessment",
+    "title": "Full Stack Software Developer Assessment",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/4Z975F6LS5AN",
+    "certification": "ibm-full-stack",
+    "order": 13
+  },
+  {
+    "id": "ibm-generative-ai",
+    "title": "Generative AI: Elevate your Software Development Career",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/62R3DY1LAQIF",
+    "certification": "ibm-full-stack",
+    "order": 14
+  },
+  {
+    "id": "ibm-career-guide",
+    "title": "Software Developer Career Guide and Interview Preparation",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/IQ1U41G7DKAF",
+    "certification": "ibm-full-stack",
+    "order": 15
+  },
+
+  {
+    "id": "gdm-foundations",
+    "title": "Foundations of Digital Marketing and E-commerce",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/DDZJK79ZQQDW",
+    "certification": "google-digital-marketing",
+    "order": 1
+  },
+  {
+    "id": "gdm-attract-engage",
+    "title": "Attract and Engage Customers with Digital Marketing",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/9L04GBLJXPFA",
+    "certification": "google-digital-marketing",
+    "order": 2
+  },
+  {
+    "id": "gdm-likes-to-leads",
+    "title": "From Likes to Leads: Interact with Customers Online",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/QAMEBSL1Z59L",
+    "certification": "google-digital-marketing",
+    "order": 3
+  },
+  {
+    "id": "gdm-email",
+    "title": "Think Outside the Inbox: Email Marketing",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/B5ETAI7A0JP2",
+    "certification": "google-digital-marketing",
+    "order": 4
+  },
+  {
+    "id": "gdm-analytics",
+    "title": "Assess for Success: Marketing Analytics and Measurement",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/HWSYYBKSYNTR",
+    "certification": "google-digital-marketing",
+    "order": 5
+  },
+  {
+    "id": "gdm-ecommerce-stores",
+    "title": "Make the Sale: Build, Launch, and Manage E-commerce Stores",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/NB1NTVTA5S0M",
+    "certification": "google-digital-marketing",
+    "order": 6
+  },
+  {
+    "id": "gdm-loyalty",
+    "title": "Satisfaction Guaranteed: Develop Customer Loyalty Online",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/65MALDLLF5F8",
+    "certification": "google-digital-marketing",
+    "order": 7
+  },
+
+  {
+    "id": "gda-foundations",
+    "title": "Foundations: Data, Data, Everywhere",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/47DD4HNS9ZZ6",
+    "certification": "google-data-analytics",
+    "order": 1
+  },
+  {
+    "id": "gda-ask-questions",
+    "title": "Ask Questions to Make Decisions",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/P71KLO9TQZU4",
+    "certification": "google-data-analytics",
+    "order": 2
+  },
+  {
+    "id": "gda-prepare-data",
+    "title": "Prepare Data for Exploration",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/R80N1U83O8AM",
+    "certification": "google-data-analytics",
+    "order": 3
+  },
+  {
+    "id": "gda-process-data",
+    "title": "Process Data from Dirty to Clean",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/4B9H7I1TFRDM",
+    "certification": "google-data-analytics",
+    "order": 4
+  },
+  {
+    "id": "gda-analyze-data",
+    "title": "Analyze Data to Answer Questions",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/K939KBS8F6AL",
+    "certification": "google-data-analytics",
+    "order": 5
+  },
+  {
+    "id": "gda-visualization",
+    "title": "Share Data Through the Art of Visualization",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/5Z9BCE9H9XBY",
+    "certification": "google-data-analytics",
+    "order": 6
+  },
+  {
+    "id": "gda-r-programming",
+    "title": "Data Analysis with R Programming",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/L00WODZ75RG3",
+    "certification": "google-data-analytics",
+    "order": 7
+  },
+  {
+    "id": "gda-capstone",
+    "title": "Google Data Analytics Capstone: Complete a Case Study",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/W5LM3A8OIW2Q",
+    "certification": "google-data-analytics",
+    "order": 8
+  },
+
+  {
+    "id": "gpm-foundations",
+    "title": "Foundations of Project Management",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/HTYK99BAO94F",
+    "certification": "google-project-management",
+    "order": 1
+  },
+  {
+    "id": "gpm-initiation",
+    "title": "Project Initiation: Starting a Successful Project",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/FACYZCABXDY3",
+    "certification": "google-project-management",
+    "order": 2
+  },
+  {
+    "id": "gpm-planning",
+    "title": "Project Planning: Putting it All Together",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/DTQOF8CS2IUB",
+    "certification": "google-project-management",
+    "order": 3
+  },
+  {
+    "id": "gpm-execution",
+    "title": "Project Execution: Running the Project",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/WHL1M2PS8JFV",
+    "certification": "google-project-management",
+    "order": 4
+  },
+  {
+    "id": "gpm-agile",
+    "title": "Agile Project Management",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/6MXF6P3DPZCX",
+    "certification": "google-project-management",
+    "order": 5
+  },
+  {
+    "id": "gpm-capstone",
+    "title": "Capstone: Applying Project Management in the Real World",
+    "url": "https://www.coursera.org/account/accomplishments/certificate/IMVRNRX2H1WI",
+    "certification": "google-project-management",
+    "order": 6
+  }
+]

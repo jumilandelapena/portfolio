@@ -1,0 +1,16 @@
+{
+  "role": "Software Engineer",
+  "org": "ClinicMind",
+  "orgNote": "US healthcare EHR software, remote",
+  "start": "2026-05",
+  "end": "present",
+  "summary": "Full-stack feature work and bug fixing on the Angular and Node.js EHR platform, with tests shipped alongside every change.",
+  "highlights": [
+    "Ship features and bug fixes across the Angular front end and the Node.js back end of a US electronic health record (EHR) product: 256 merged merge requests in six months, 98 of them in October 2026 alone.",
+    "Built the Help Center guided-walkthrough engine, the Page Guides admin editor, the Knowledge Check dashboard with manager tools and review queues, Practice Settings search, and email-code sign-in for public appointment booking.",
+    "Hardened patient-facing and clinical workflows (CareConnect portal, telehealth, scheduling, care plans, billing, mailboxes): closed cross-practice data leaks, timezone and daylight-saving bugs, hung server-sent-event routes and failed-startup blank screens.",
+    "Deliver every change with proof: hermetic Playwright end-to-end specs, Storybook stories, unit tests and visual baselines, plus 141 bug and improvement reports from exploratory testing of the platform."
+  ],
+  "stack": ["Angular", "TypeScript", "Node.js", "MongoDB", "Playwright", "Storybook", "GitLab"],
+  "order": 1
+}

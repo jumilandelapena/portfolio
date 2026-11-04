@@ -1,0 +1,9 @@
+{
+  "title": "expressBookReviews",
+  "repo": "jumilandelapena/expressBookReviews",
+  "url": "https://github.com/jumilandelapena/expressBookReviews",
+  "tagline": "Node.js and Express book review server with JWT session authentication and async/await API calls, from the IBM back-end course.",
+  "stack": ["Node.js", "Express", "JWT"],
+  "areas": ["api"],
+  "order": 14
+}

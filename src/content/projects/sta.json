@@ -1,0 +1,9 @@
+{
+  "title": "sta",
+  "repo": "jumilandelapena/sta",
+  "url": "https://github.com/jumilandelapena/sta",
+  "tagline": "School website for Santa Teresita Academy, Inc. (Aurora, Zamboanga del Sur) built with React 19, Vite 6 and Tailwind CSS v4, with all copy and photos editable from one data file.",
+  "stack": ["React", "Vite", "Tailwind CSS"],
+  "areas": ["web"],
+  "order": 10
+}

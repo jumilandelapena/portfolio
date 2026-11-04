@@ -1,0 +1,55 @@
+[
+  {
+    "id": "electronics",
+    "title": "Electronics engineering",
+    "order": 1,
+    "summary": "Licensed Electronics Engineer and Electronics Technician. BS Electronics Engineering from USTP; passed the licensure examination on the first attempt in 2021.",
+    "canDo": [
+      "Analog and digital circuit design and analysis.",
+      "Microcontroller and embedded systems on Arduino and Raspberry Pi: sensor integration, real-time monitoring and web interfaces.",
+      "PCB design, manufacturing instructions and material quotations."
+    ],
+    "credentials": ["Licensed Electronics Engineer (PRC)", "Licensed Electronics Technician (PRC)"],
+    "certifications": [],
+    "asEngineer": "Hardware taught me to treat software as a system: understand the whole signal path, measure before changing anything, and prove the fix instead of assuming it."
+  },
+  {
+    "id": "project-management",
+    "title": "Project management",
+    "order": 2,
+    "summary": "Google Project Management Professional Certificate: project initiation, planning, execution and Agile delivery.",
+    "canDo": [
+      "Agile and Scrum ceremonies, sprint planning and task estimation.",
+      "Project charters, risk and quality management, change management.",
+      "Stakeholder communication and written hand-offs across teams and time zones."
+    ],
+    "certifications": ["google-project-management"],
+    "asEngineer": "It shows up as small, well-described merge requests, honest status updates, and hand-offs that a Java back-end or product teammate can act on without a meeting."
+  },
+  {
+    "id": "data-analytics",
+    "title": "Data analytics",
+    "order": 3,
+    "summary": "Google Data Analytics Professional Certificate: SQL, spreadsheets, R and Tableau, from data cleaning to presentation.",
+    "canDo": [
+      "SQL queries, data cleaning and aggregation.",
+      "Analysis and visualisation in spreadsheets, R and Tableau.",
+      "Framing questions and presenting findings to decision makers."
+    ],
+    "certifications": ["google-data-analytics"],
+    "asEngineer": "I read test reports and pipeline metrics the same way: find the signal in the noise, then write the query that reproduces a data bug before fixing it."
+  },
+  {
+    "id": "digital-marketing",
+    "title": "Digital marketing and e-commerce",
+    "order": 4,
+    "summary": "Google Digital Marketing and E-commerce Professional Certificate: search, email and social campaigns, analytics and online stores.",
+    "canDo": [
+      "Search engine optimisation and search engine marketing.",
+      "Email marketing, social media analytics and customer relationship management.",
+      "E-commerce store set-up, measurement and customer loyalty."
+    ],
+    "certifications": ["google-digital-marketing"],
+    "asEngineer": "It makes me a front-end developer who cares about semantic HTML, metadata, page speed and the words on the page, and a Help Center author who writes for the reader."
+  }
+]
