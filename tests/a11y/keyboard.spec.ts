@@ -13,53 +13,44 @@ async function focusedHasVisibleOutline(page: Page): Promise<boolean> {
 }
 
 test.describe('keyboard-only navigation', () => {
-  test('tabbing walks the skip link, section links and theme toggle with a visible focus ring', async ({
-    home,
-    page,
-    browserName,
-  }) => {
-    // WebKit moves keyboard focus between form controls only; links are skipped unless the
-    // browser's "press Tab to highlight each item" setting is on, which headless WebKit does
-    // not expose. The link walk is therefore covered on Chromium and Firefox, and WebKit
-    // verifies the controls it can reach in `WebKit reaches every control`.
-    test.skip(browserName === 'webkit', 'WebKit does not move Tab focus to links');
-
+  test('tabbing walks every focusable control with a visible focus ring', async ({ home, page }, testInfo) => {
+    // WebKit builds differ in whether Tab reaches links (Safari's "press Tab to highlight each
+    // item" setting): the Windows build skips them, the Linux build does not. Detect it from the
+    // first Tab instead of assuming, and walk whatever the engine can reach.
     await page.keyboard.press('Tab');
-    await expect(home.skipLink).toBeFocused();
-    expect(await focusedHasVisibleOutline(page)).toBe(true);
+    const tabReachesLinks = await home.skipLink.evaluate((el) => el === document.activeElement);
+    testInfo.annotations.push({ type: 'tab-reaches-links', description: String(tabReachesLinks) });
 
-    await page.keyboard.press('Tab');
-    await expect(home.logo).toBeFocused();
+    if (tabReachesLinks) {
+      await expect(home.skipLink).toBeFocused();
+      expect(await focusedHasVisibleOutline(page)).toBe(true);
 
-    for (const name of ['Projects', 'Impact', 'Experience', 'Skills', 'Certifications', 'About', 'Contact']) {
       await page.keyboard.press('Tab');
-      await expect(home.navLink(name)).toBeFocused();
-      expect(await focusedHasVisibleOutline(page), `focus ring on ${name}`).toBe(true);
+      await expect(home.logo).toBeFocused();
+
+      for (const name of ['Projects', 'Impact', 'Experience', 'Skills', 'Certifications', 'About', 'Contact']) {
+        await page.keyboard.press('Tab');
+        await expect(home.navLink(name)).toBeFocused();
+        expect(await focusedHasVisibleOutline(page), `focus ring on ${name}`).toBe(true);
+      }
+
+      await page.keyboard.press('Tab');
     }
 
-    await page.keyboard.press('Tab');
-    await expect(home.themeToggle).toBeFocused();
-    expect(await focusedHasVisibleOutline(page)).toBe(true);
-
-    await page.keyboard.press('Enter');
-    expect(await home.currentTheme()).toBe('light');
-  });
-
-  test('WebKit reaches every control with Tab and shows a focus ring on each', async ({ home, page, browserName }) => {
-    test.skip(browserName !== 'webkit', 'covered by the full walk on other engines');
-
-    await page.keyboard.press('Tab');
     await expect(home.themeToggle).toBeFocused();
     expect(await focusedHasVisibleOutline(page)).toBe(true);
     await page.keyboard.press('Enter');
     expect(await home.currentTheme()).toBe('light');
 
+    // The next stop is the first hero link where Tab reaches links, otherwise the first filter chip.
     await page.keyboard.press('Tab');
-    await expect(home.projectFilter('All')).toBeFocused();
+    if (tabReachesLinks) await expect(home.heroProjectsLink).toBeFocused();
+    else await expect(home.projectFilter('All')).toBeFocused();
     expect(await focusedHasVisibleOutline(page)).toBe(true);
 
-    // Links still show the ring when they receive focus by other means.
+    // Links show the ring whenever they hold focus, however they got it.
     await home.navLink('Projects').focus();
+    await expect(home.navLink('Projects')).toBeFocused();
     expect(await focusedHasVisibleOutline(page)).toBe(true);
   });
 

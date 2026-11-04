@@ -24,7 +24,7 @@ for (const theme of ['dark', 'light'] as const satisfies readonly Theme[]) {
         if (target.path !== './') await page.goto(target.path);
         expect(await home.currentTheme()).toBe(theme);
 
-        const results = await axe().analyze();
+        const results = await axe();
         const serious = blocking(results.violations);
         testInfo.annotations.push({ type: 'axe-violations', description: String(serious.length) });
         if (results.violations.length > 0) {
