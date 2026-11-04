@@ -34,6 +34,7 @@ export const REPO = {
   actionsUrl: 'https://github.com/jumilandelapena/portfolio/actions',
 } as const;
 
+// TODO(jumi): confirm résumé is current (public/resume.pdf is the previous site's PDF).
 export const RESUME_PATH = '/resume.pdf';
 
 /** Join a site-relative path onto the configured base, never producing `//`. */
