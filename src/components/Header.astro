@@ -1,0 +1,42 @@
+---
+import { PERSON, url } from '../site.config';
+
+import ThemeToggle from './ThemeToggle.astro';
+
+const links = [
+  { href: '#projects', label: 'Projects' },
+  { href: '#impact', label: 'Impact' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#certifications', label: 'Certifications' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
+] as const;
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
+  <div class="mx-auto flex max-w-site items-center gap-4 px-4 py-3 sm:px-6">
+    <a
+      href={url('/')}
+      class="shrink-0 font-mono text-sm font-semibold tracking-tight text-fg hover:text-accent"
+      aria-label={`${PERSON.name}, home`}
+    >
+      jumi<span class="text-accent">.</span>
+    </a>
+    <nav aria-label="Sections" class="min-w-0 flex-1">
+      <ul class="flex gap-1 overflow-x-auto text-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {links.map((link) => (
+          <li class="shrink-0">
+            <a
+              href={url(link.href)}
+              class="inline-block rounded-md px-2.5 py-1.5 text-muted hover:bg-surface hover:text-fg"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>

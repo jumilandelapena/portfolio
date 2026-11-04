@@ -1,0 +1,90 @@
+---
+import { formatIsoDate } from '../lib/format';
+import { getTestStatus } from '../lib/status';
+import { REPO } from '../site.config';
+
+const status = getTestStatus();
+const rows: { label: string; html: string }[] = [];
+
+if (status) {
+  const lh = status.lighthouse;
+  const okTests = status.tests.failed === 0;
+  rows.push(
+    {
+      label: 'tests',
+      html: `${okTests ? '<span class="text-accent">✓</span>' : '<span class="text-warn">✗</span>'} ${status.tests.passed} passed · ${status.tests.failed} failed · ${status.tests.skipped} skipped`,
+    },
+    { label: 'browsers', html: status.browsers.join(' · ') },
+    {
+      label: 'a11y',
+      html: `${status.a11y.status === 'pass' ? '<span class="text-accent">✓</span>' : '<span class="text-warn">✗</span>'} ${status.a11y.violations} serious or critical axe violations, dark and light`,
+    },
+    {
+      label: 'lighthouse',
+      html: `perf ${lh.performance} · a11y ${lh.accessibility} · best practices ${lh.bestPractices} · seo ${lh.seo}`,
+    },
+  );
+}
+const shortSha = status?.commit.slice(0, 7);
+---
+
+<aside
+  aria-labelledby="status-title"
+  data-testid="test-status"
+  data-state={status ? 'ready' : 'pending'}
+  class="rounded-md border border-line bg-surface font-mono text-xs text-fg sm:text-sm"
+>
+  <p id="status-title" class="m-0 flex max-w-none items-center gap-2 border-b border-line px-4 py-2.5 font-semibold">
+    <span class:list={['inline-block size-2 rounded-full', status ? 'bg-accent' : 'bg-warn']} aria-hidden="true"></span>
+    This site is tested
+  </p>
+  <ul class="m-0 list-none space-y-1.5 px-4 py-3">
+    {status ? (
+      <>
+        {rows.map((row, index) => (
+          <li class="status-row flex gap-3" style={`--row: ${index}`}>
+            <span class="w-20 shrink-0 text-muted">{row.label}</span>
+            <span set:html={row.html} />
+          </li>
+        ))}
+        <li class="status-row flex gap-3" style={`--row: ${rows.length}`}>
+          <span class="w-20 shrink-0 text-muted">run</span>
+          <span>
+            <a
+              href={status.runUrl}
+              class="underline decoration-line underline-offset-4 hover:text-accent"
+              rel="noopener noreferrer"
+            >
+              #{status.runId}
+            </a>{' '}
+            · <time datetime={status.date}>{formatIsoDate(status.date)}</time> ·{' '}
+            <a
+              href={`${REPO.url}/commit/${status.commit}`}
+              class="underline decoration-line underline-offset-4 hover:text-accent"
+              rel="noopener noreferrer"
+            >
+              {shortSha}
+            </a>
+          </span>
+        </li>
+      </>
+    ) : (
+      <>
+        <li class="status-row flex gap-3" style="--row: 0">
+          <span class="w-20 shrink-0 text-muted">status</span>
+          <span>no CI summary for this build yet</span>
+        </li>
+        <li class="status-row flex gap-3" style="--row: 1">
+          <span class="w-20 shrink-0 text-muted">run</span>
+          <a
+            href={REPO.actionsUrl}
+            class="underline decoration-line underline-offset-4 hover:text-accent"
+            rel="noopener noreferrer"
+          >
+            latest workflow runs
+          </a>
+        </li>
+      </>
+    )}
+  </ul>
+</aside>

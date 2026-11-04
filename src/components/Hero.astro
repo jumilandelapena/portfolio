@@ -1,0 +1,74 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+
+import profile from '../assets/profile.jpg';
+import { HERO, PERSON, RESUME_PATH, url } from '../site.config';
+
+import TestStatus from './TestStatus.astro';
+
+const socials = (await getCollection('socials')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section
+  id="top"
+  aria-labelledby="hero-title"
+  class="mx-auto grid max-w-site gap-10 px-4 pt-14 pb-16 sm:px-6 sm:pt-20 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start"
+>
+  <div>
+    <p class="m-0 flex max-w-none items-center gap-4 text-sm text-muted">
+      <Image
+        src={profile}
+        alt={`${PERSON.name} in a grey suit and navy tie`}
+        width={56}
+        height={56}
+        loading="eager"
+        decoding="async"
+        class="size-14 rounded-full object-cover lg:hidden"
+      />
+      <span>
+        {PERSON.honorific} {PERSON.name} · {PERSON.jobTitle}, {PERSON.employer}
+      </span>
+    </p>
+    <h1 id="hero-title" class="mt-5 text-hero font-semibold tracking-tight">
+      {HERO.headline}
+    </h1>
+    <p class="mt-5 text-lg text-muted">{HERO.supporting}</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a
+        href={url('#projects')}
+        class="inline-flex items-center rounded-md bg-accent px-4 py-2 font-medium text-accent-fg hover:opacity-90"
+      >
+        Projects
+      </a>
+      <a
+        href={url(RESUME_PATH)}
+        class="inline-flex items-center rounded-md border border-line px-4 py-2 font-medium hover:border-accent"
+        data-testid="resume-link"
+      >
+        Résumé (PDF)
+      </a>
+    </div>
+    <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm" aria-label="Profiles">
+      {socials.map((s) => (
+        <li>
+          <a href={s.data.url} rel="me noopener noreferrer" class="text-muted hover:text-accent">
+            {s.data.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="flex flex-col gap-6">
+    <Image
+      src={profile}
+      alt={`${PERSON.name} in a grey suit and navy tie`}
+      width={352}
+      height={352}
+      loading="eager"
+      decoding="async"
+      class="hidden aspect-square w-full rounded-md object-cover lg:block"
+    />
+    <TestStatus />
+  </div>
+</section>
