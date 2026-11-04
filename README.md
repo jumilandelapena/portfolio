@@ -53,7 +53,10 @@ python -m http.server 8000    # or: npx serve
 
 ## Deploying
 
-Pushing to `main` publishes the site. GitHub Pages redeploys automatically.
+Pushing to `main` runs `.github/workflows/pages.yml`, which uploads the
+repository root and deploys it to GitHub Pages (the repository's Pages source is
+"GitHub Actions", so a push without this workflow publishes nothing). The run
+can also be started by hand from the Actions tab (`workflow_dispatch`).
 
 ## Notes
 
