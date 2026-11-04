@@ -1,0 +1,137 @@
+[
+  {
+    "id": "qa",
+    "title": "QA and test automation",
+    "order": 1,
+    "items": [
+      {
+        "name": "Playwright end-to-end testing",
+        "note": "Daily driver on a 1,000+ test suite for a healthcare EHR, and the test layer of every project here.",
+        "projects": ["selfheal-playwright", "portfolio", "pdf-chat-rag"],
+        "experience": ["qa-automation-engineer", "software-engineer"]
+      },
+      {
+        "name": "Page Object Model and fixtures",
+        "note": "Shared fixtures, parameterised page objects and role-based locators instead of brittle selectors.",
+        "projects": ["portfolio"],
+        "experience": ["qa-automation-engineer"]
+      },
+      {
+        "name": "Flaky-test forensics and pipeline triage",
+        "note": "CI timeouts, date-boundary and hydration races, iframe and locator drift, version-gated specs across releases.",
+        "experience": ["qa-automation-engineer", "software-engineer"]
+      },
+      {
+        "name": "Accessibility and visual regression testing",
+        "note": "axe-core checks in both themes, keyboard-only runs, and screenshot baselines reviewed with every change.",
+        "projects": ["portfolio"],
+        "experience": ["software-engineer"]
+      },
+      {
+        "name": "Exploratory testing and defect reports",
+        "note": "203 reproducible issues filed on the platform and its test suite, from data integrity to narrative rendering.",
+        "experience": ["qa-automation-engineer", "software-engineer"]
+      },
+      {
+        "name": "Release gating and defect triage",
+        "note": "Regression risk assessment and release gating for a clinical product.",
+        "experience": ["qa-automation-engineer"],
+        "todo": "TODO(jumi): confirm wording; the previous site said \"defect triage for a HIPAA-regulated product\""
+      }
+    ]
+  },
+  {
+    "id": "development",
+    "title": "Software development",
+    "order": 2,
+    "items": [
+      {
+        "name": "TypeScript and Angular",
+        "note": "Feature work on the EHR front end: signals, CDK overlays, Storybook stories and unit tests.",
+        "projects": ["selfheal-playwright", "ai-code-review-action"],
+        "experience": ["software-engineer"]
+      },
+      {
+        "name": "React",
+        "note": "Meta and IBM certified; React front ends in the PDF chat app and the school website.",
+        "projects": ["pdf-chat-rag", "sta", "e-plantshopping"]
+      },
+      {
+        "name": "Node.js back ends",
+        "note": "Routes, migrations, email and auth flows on the EHR's Node.js service; Express APIs in course work.",
+        "projects": ["expressbookreviews"],
+        "experience": ["software-engineer"]
+      },
+      {
+        "name": "Python, Django and FastAPI",
+        "note": "Django REST Framework with role-based access, and a FastAPI retrieval service with streaming.",
+        "projects": ["little-lemon-api", "pdf-chat-rag"]
+      },
+      {
+        "name": "REST APIs, MongoDB and SQL",
+        "note": "API design, token auth and throttling; MongoDB and SQL queries to reproduce and fix data bugs.",
+        "projects": ["little-lemon-api"],
+        "experience": ["software-engineer"]
+      }
+    ]
+  },
+  {
+    "id": "tooling",
+    "title": "Tooling and CI/CD",
+    "order": 3,
+    "items": [
+      {
+        "name": "GitLab CI and GitHub Actions",
+        "note": "Nightly multi-environment pipelines at work; gated deploys, Lighthouse budgets and a published Action on GitHub.",
+        "projects": ["portfolio", "ai-code-review-action"],
+        "experience": ["qa-automation-engineer", "software-engineer"]
+      },
+      {
+        "name": "Jenkins",
+        "note": "Playwright pipelines on Jenkins and GitHub Actions from the CI/CD for Test Automation course.",
+        "projects": ["ci-cd-for-test-automation"]
+      },
+      {
+        "name": "Docker",
+        "note": "One-command stacks with Docker Compose, and Playwright's Docker image for reproducible screenshot baselines.",
+        "projects": ["pdf-chat-rag", "portfolio"]
+      },
+      {
+        "name": "Storybook and visual baselines",
+        "note": "Stories with mocked APIs and screenshot checks shipped with front-end changes.",
+        "experience": ["software-engineer"]
+      },
+      {
+        "name": "Git and merge-request hygiene",
+        "note": "Small, evidence-backed merge requests: 440 merged across two repositories in a year.",
+        "experience": ["qa-automation-engineer", "software-engineer"]
+      }
+    ]
+  },
+  {
+    "id": "ai",
+    "title": "AI-assisted development",
+    "order": 4,
+    "items": [
+      {
+        "name": "Claude API and structured outputs",
+        "note": "Validated JSON outputs, prompt caching and token budgeting in two shipped tools.",
+        "projects": ["selfheal-playwright", "ai-code-review-action"]
+      },
+      {
+        "name": "Retrieval-augmented generation",
+        "note": "Hybrid vector and BM25 retrieval with native citations, measured with a golden-set eval.",
+        "projects": ["pdf-chat-rag"]
+      },
+      {
+        "name": "AI tools in the daily workflow",
+        "note": "AI-assisted coding and review inside a test-first loop: spec, build, test, ship with evidence.",
+        "experience": ["software-engineer"]
+      },
+      {
+        "name": "Prompt engineering",
+        "note": "Google AI Prompting Essentials and Vanderbilt's prompt engineering and AI agents courses."
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "title": "Meta Full Stack Developer: Front-End & Back-End from Scratch Specialization",
+  "provider": "Meta via Coursera",
+  "kind": "specialization",
+  "url": "https://www.coursera.org/account/accomplishments/specialization/IO4ZLIRCI22B",
+  "areas": ["development"],
+  "year": 2026,
+  "completed": "2026-11",
+  "description": "Meta's full-stack track from first HTML page to production API: React on the front end, Python, Django and databases on the back end, with version control throughout.",
+  "order": 1,
+  "todo": "TODO(jumi): the specialization has 10 courses; the Programming with JavaScript certificate link is missing from the data"
+}

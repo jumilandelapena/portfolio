@@ -1,0 +1,26 @@
+[
+  {
+    "id": "github",
+    "label": "GitHub",
+    "url": "https://github.com/jumilandelapena",
+    "handle": "jumilandelapena",
+    "icon": "github",
+    "order": 1
+  },
+  {
+    "id": "linkedin",
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/in/engr-jumilan-dela-pena",
+    "handle": "engr-jumilan-dela-pena",
+    "icon": "linkedin",
+    "order": 2
+  },
+  {
+    "id": "youtube",
+    "label": "YouTube",
+    "url": "https://www.youtube.com/@jumilandelapena",
+    "handle": "@jumilandelapena",
+    "icon": "youtube",
+    "order": 3
+  }
+]

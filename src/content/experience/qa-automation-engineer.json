@@ -1,0 +1,17 @@
+{
+  "role": "QA Automation Engineer",
+  "org": "ClinicMind",
+  "orgNote": "US healthcare EHR software, remote",
+  "start": "2025-09",
+  "end": "2026-05",
+  "summary": "Owned a large share of the Playwright and TypeScript smoke-test suite that gates every release of the EHR.",
+  "highlights": [
+    "Owned a large share of the 1,000+ test Playwright suite that gates every release of the EHR across four environments: 184 merged merge requests and 460+ commits.",
+    "Designed and built the ChiroNote clinical-note suite from scratch in 40+ increments: SuperNote-to-ChiroNote data salting, vitals, neurological and musculoskeletal exams, assessment and plan, sign-off and chart-widget sync.",
+    "Migrated chart components, field and macro manipulation, spine diagram, problem list and care-plan specs to the new Angular front end, and refactored the suite onto shared fixtures and page objects.",
+    "Kept nightly pipelines green: diagnosed CI timeouts, date-boundary and hydration races, iframe and locator drift, and version-gated specs across releases v50 to v56.",
+    "Reported 200+ product and test-suite defects with reproducible steps, from data-integrity bugs to narrative rendering and accessibility issues."
+  ],
+  "stack": ["Playwright", "TypeScript", "Page Object Model", "GitLab CI"],
+  "order": 2
+}

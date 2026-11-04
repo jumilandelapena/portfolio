@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+
+import about from '../assets/about.jpg';
+import { PERSON, RESUME_PATH, url } from '../site.config';
+
+import Section from './Section.astro';
+
+// TODO(jumi): confirm Spanish level before adding it back to this list.
+const languages = ['English', 'Filipino'];
+---
+
+<Section id="about" title="About">
+  <div class="grid gap-8 sm:grid-cols-[10rem_minmax(0,1fr)]">
+    <Image
+      src={about}
+      alt={`${PERSON.name} in a navy blazer and white shirt`}
+      width={320}
+      height={320}
+      loading="lazy"
+      decoding="async"
+      class="aspect-square w-40 rounded-md object-cover"
+    />
+    <div>
+      <p>
+        I trained as an electronics engineer and passed the licensure exam on my first attempt. Writing ClinicMind's
+        help system taught me the product inside out, automating its tests taught me where software breaks, and now I
+        build the features and the tests together.
+      </p>
+      <p class="mt-4">
+        I work remotely from the Philippines, I am a freelance web developer on the side, and I use AI tools in my
+        workflow the same way I use any tool: with a test that proves the result.
+      </p>
+      <dl class="mt-6 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
+        <div>
+          <dt class="font-mono text-xs text-muted">Location</dt>
+          <dd class="mt-0.5">{PERSON.location}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-xs text-muted">Languages</dt>
+          <dd class="mt-0.5">{languages.join(', ')}</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-xs text-muted">Licence</dt>
+          <dd class="mt-0.5">Electronics Engineer and Electronics Technician (PRC)</dd>
+        </div>
+        <div>
+          <dt class="font-mono text-xs text-muted">Résumé</dt>
+          <dd class="mt-0.5">
+            <a href={url(RESUME_PATH)} class="prose-link">
+              Download the PDF
+            </a>
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</Section>

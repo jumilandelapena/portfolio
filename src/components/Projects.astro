@@ -1,0 +1,153 @@
+---
+import { getCollection } from 'astro:content';
+
+import { projectAreas } from '../content.config';
+import { formatIsoDate } from '../lib/format';
+import { fetchRepoMeta } from '../lib/github';
+
+import Section from './Section.astro';
+
+const areaLabels: Record<(typeof projectAreas)[number], string> = {
+  testing: 'Testing',
+  ai: 'AI',
+  api: 'API',
+  web: 'Web',
+};
+
+const all = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featured = all.filter((p) => p.data.featured);
+const earlier = all.filter((p) => !p.data.featured);
+const meta = new Map(await Promise.all(all.map(async (p) => [p.id, await fetchRepoMeta(p.data.repo)] as const)));
+---
+
+<Section
+  id="projects"
+  title="Projects"
+  intro="Open-source work on GitHub. Each repository ships with a README, automated tests and continuous integration; the AI projects run without an API key through a mock provider."
+>
+  <div
+    class="flex flex-wrap items-center gap-2"
+    role="group"
+    aria-label="Filter projects by area"
+    data-filter-group="projects"
+  >
+    <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">
+      All
+    </button>
+    {projectAreas.map((area) => (
+      <button type="button" class="filter-chip" data-filter={area} aria-pressed="false">
+        {areaLabels[area]}
+      </button>
+    ))}
+    <p class="m-0 ml-auto max-w-none font-mono text-xs text-muted" aria-live="polite" data-filter-count>
+      {all.length} of {all.length}
+    </p>
+  </div>
+
+  <div class="mt-8 grid gap-5 md:grid-cols-2" data-filter-items>
+    {featured.map((project) => {
+      const m = meta.get(project.id) ?? null;
+      return (
+        <article
+          id={`project-${project.id}`}
+          data-areas={project.data.areas.join(' ')}
+          class="flex flex-col rounded-md border border-line bg-surface/40 p-5"
+        >
+          <h3 class="text-lg font-semibold">
+            <a href={project.data.url} rel="noopener noreferrer" class="hover:text-accent">
+              {project.data.title}
+            </a>
+          </h3>
+          <p class="mt-1 max-w-none font-mono text-xs text-muted">
+            {project.data.repo}
+            {m?.language && <> · {m.language}</>}
+            {m?.pushedAt && (
+              <>
+                {' '}
+                · updated <time datetime={m.pushedAt}>{formatIsoDate(m.pushedAt)}</time>
+              </>
+            )}
+          </p>
+          <p class="mt-3 font-medium">{project.data.tagline}</p>
+          <dl class="mt-4 space-y-3 text-sm">
+            {project.data.problem && (
+              <div>
+                <dt class="font-medium text-muted">Problem</dt>
+                <dd class="mt-0.5">{project.data.problem}</dd>
+              </div>
+            )}
+            {project.data.built && (
+              <div>
+                <dt class="font-medium text-muted">What I built</dt>
+                <dd class="mt-0.5">{project.data.built}</dd>
+              </div>
+            )}
+            {project.data.testing && (
+              <div>
+                <dt class="font-medium text-muted">How it is tested</dt>
+                <dd class="mt-0.5">{project.data.testing}</dd>
+              </div>
+            )}
+          </dl>
+          {project.data.highlights.length > 0 && (
+            <ul class="mt-4 space-y-1.5 text-sm">
+              {project.data.highlights.map((h) => (
+                <li class="flex gap-2">
+                  <span class="mt-0.5 shrink-0 font-mono text-accent" aria-hidden="true">
+                    ✓
+                  </span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <ul class="mt-5 flex flex-wrap gap-1.5" aria-label="Stack">
+            {project.data.stack.map((tech) => (
+              <li class="rounded-sm border border-line px-2 py-0.5 font-mono text-xs text-muted">{tech}</li>
+            ))}
+          </ul>
+          <p class="mt-5 flex max-w-none flex-wrap gap-x-4 gap-y-1 border-t border-line pt-4 text-sm">
+            {project.data.links.map((link) => (
+              <a href={link.url} rel="noopener noreferrer" class="prose-link">
+                {link.label}
+              </a>
+            ))}
+          </p>
+        </article>
+      );
+    })}
+  </div>
+
+  <h3 class="mt-12 text-lg font-semibold">Earlier repositories</h3>
+  <ul class="mt-4 divide-y divide-line border-y border-line" data-filter-items>
+    {earlier.map((project) => {
+      const m = meta.get(project.id) ?? null;
+      return (
+        <li id={`project-${project.id}`} data-areas={project.data.areas.join(' ')} class="py-4">
+          <p class="m-0 max-w-none">
+            <a
+              href={project.data.url}
+              rel="noopener noreferrer"
+              class="font-mono text-sm font-semibold break-words [overflow-wrap:anywhere] hover:text-accent"
+            >
+              {project.data.title}
+            </a>
+            {m?.language && <span class="ml-2 font-mono text-xs text-muted">{m.language}</span>}
+          </p>
+          <p class="mt-1 text-sm text-muted">{project.data.tagline}</p>
+        </li>
+      );
+    })}
+  </ul>
+  <p class="mt-6 text-sm">
+    <a href="https://github.com/jumilandelapena?tab=repositories" rel="noopener noreferrer" class="prose-link">
+      All repositories on GitHub
+    </a>
+  </p>
+</Section>
+
+<script>
+  import { initFilter } from '../scripts/filter';
+
+  initFilter('projects');
+</script>

@@ -1,0 +1,21 @@
+# dependencies and build output
+node_modules/
+dist/
+.astro/
+
+# test output
+test-results/
+playwright-report/
+blob-report/
+.lighthouseci/
+.lighthouseci-out/
+
+# written by CI before the production build; never commit a stale copy
+public/test-status.json
+
+# local
+.env
+.env.*
+*.local
+.DS_Store
+Thumbs.db

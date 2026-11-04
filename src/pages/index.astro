@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+
+import About from '../components/About.astro';
+import Certifications from '../components/Certifications.astro';
+import Contact from '../components/Contact.astro';
+import Disciplines from '../components/Disciplines.astro';
+import Experience from '../components/Experience.astro';
+import Hero from '../components/Hero.astro';
+import Impact from '../components/Impact.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Base from '../layouts/Base.astro';
+import { absoluteUrl, PERSON, SITE_DESCRIPTION } from '../site.config';
+
+const socials = await getCollection('socials');
+const certifications = (await getCollection('certifications')).filter((c) => c.data.url);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: PERSON.name,
+  alternateName: 'Jumilan Dela Pena',
+  honorificPrefix: PERSON.honorific,
+  jobTitle: PERSON.jobTitle,
+  description: SITE_DESCRIPTION,
+  url: absoluteUrl('/'),
+  image: absoluteUrl('/og.png'),
+  email: `mailto:${PERSON.email}`,
+  worksFor: { '@type': 'Organization', name: PERSON.employer },
+  alumniOf: { '@type': 'EducationalOrganization', name: PERSON.alumniOf },
+  address: { '@type': 'PostalAddress', addressCountry: 'PH' },
+  knowsAbout: [
+    'Test Automation',
+    'Playwright',
+    'TypeScript',
+    'Angular',
+    'Node.js',
+    'React',
+    'Django',
+    'CI/CD',
+    'Electronics Engineering',
+  ],
+  sameAs: socials.map((s) => s.data.url),
+  hasCredential: certifications.map((c) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name: c.data.title,
+    url: c.data.url,
+  })),
+};
+---
+
+<Base path="/" jsonLd={jsonLd}>
+  <Hero />
+  <Projects />
+  <Impact />
+  <Experience />
+  <Skills />
+  <Disciplines />
+  <Certifications />
+  <About />
+  <Contact />
+</Base>

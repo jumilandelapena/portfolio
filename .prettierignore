@@ -1,0 +1,11 @@
+dist/
+.astro/
+node_modules/
+pnpm-lock.yaml
+public/
+playwright-report/
+test-results/
+.lighthouseci/
+.lighthouseci-out/
+docs/content-inventory.md
+tests/visual/__screenshots__/

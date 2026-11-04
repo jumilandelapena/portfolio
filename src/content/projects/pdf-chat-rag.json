@@ -1,0 +1,20 @@
+{
+  "title": "Chat with your PDFs (RAG with citations)",
+  "repo": "jumilandelapena/pdf-chat-rag",
+  "url": "https://github.com/jumilandelapena/pdf-chat-rag",
+  "links": [{ "label": "Code", "url": "https://github.com/jumilandelapena/pdf-chat-rag" }],
+  "tagline": "Upload PDFs, ask questions, and get streamed answers where every claim links to the exact page it came from.",
+  "problem": "Answers from a document chat are only useful if you can check them. Most retrieval demos cite nothing, or cite a whole file.",
+  "built": "Hybrid vector and BM25 retrieval fused with reciprocal rank fusion, Claude's native citations mapped back to page and quote, Server-Sent Events streaming, and a click-to-page viewer that highlights the cited passage. One docker compose up runs the whole stack, and a mock provider runs it without an API key.",
+  "highlights": [
+    "Eval on a 20-question golden set: recall@8 100%, faithfulness 5.0/5, about $0.001 per question",
+    "Prompt caching on follow-up turns; nothing is persisted when a stream fails",
+    "FastAPI + PyMuPDF + Chroma back end, React + react-pdf front end",
+    "60 pytest, 44 Vitest and Playwright smoke tests in CI"
+  ],
+  "stack": ["Python", "FastAPI", "PyMuPDF", "Chroma", "React", "Claude citations", "Docker"],
+  "testing": "60 pytest and 44 Vitest tests plus a Playwright smoke run on every push, and a 20-question golden-set eval that reports retrieval recall, citation accuracy, faithfulness, latency and cost.",
+  "areas": ["ai", "api", "web"],
+  "featured": true,
+  "order": 2
+}

@@ -1,0 +1,30 @@
+---
+import { formatIsoDate } from '../lib/format';
+import { getTestStatus } from '../lib/status';
+import { PERSON, REPO } from '../site.config';
+
+// The deploy workflow writes the run date into test-status.json; a local or
+// pull-request build falls back to the build time.
+const status = getTestStatus();
+const deployedIso = status?.date ?? new Date().toISOString();
+const year = new Date(deployedIso).getUTCFullYear();
+---
+
+<footer class="border-t border-line">
+  <div class="mx-auto flex max-w-site flex-col gap-2 px-4 py-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p class="m-0 max-w-none">
+      &copy; {year} {PERSON.name}
+    </p>
+    <p class="m-0 flex max-w-none flex-wrap gap-x-4 gap-y-1 font-mono text-xs">
+      <a href={REPO.url} class="hover:text-fg" rel="noopener noreferrer">
+        source code
+      </a>
+      <span>
+        deployed{' '}
+        <time datetime={deployedIso} data-testid="deployed-date">
+          {formatIsoDate(deployedIso)}
+        </time>
+      </span>
+    </p>
+  </div>
+</footer>

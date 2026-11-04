@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+
+import { formatDateOnly, formatNumber } from '../lib/format';
+
+import Section from './Section.astro';
+
+const [impact] = await getCollection('impact');
+if (!impact) throw new Error('src/content/impact needs exactly one entry');
+const { data } = impact;
+---
+
+<Section id="impact" title={data.title} intro={data.intro}>
+  <ul class="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4" data-testid="impact-stats">
+    {data.stats.map((stat) => (
+      <li data-testid="impact-stat" data-value={stat.value}>
+        <span class="tabular block text-3xl font-semibold text-fg">{formatNumber(stat.value)}</span>
+        <span class="mt-1 block font-medium">{stat.label}</span>
+        <span class="mt-1 block text-sm text-muted">{stat.detail}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="mt-6 font-mono text-xs text-muted" data-testid="impact-asof">
+    as of <time datetime={data.asOf}>{formatDateOnly(data.asOf)}</time> · source: {data.source} · {data.period}
+  </p>
+
+  <div class="mt-12 grid gap-10 lg:grid-cols-2">
+    {data.roles.map((role) => (
+      <article>
+        <h3 class="text-lg font-semibold">{role.title}</h3>
+        <p class="mt-1 font-mono text-xs text-muted">{role.period}</p>
+        <ul class="mt-4 space-y-3 text-sm">
+          {role.highlights.map((h) => (
+            <li>
+              <strong class="font-semibold text-fg">{h.lead}</strong> {h.text}
+            </li>
+          ))}
+        </ul>
+        <ul class="mt-5 flex flex-wrap gap-1.5" aria-label="Focus areas">
+          {role.stack.map((item) => (
+            <li class="rounded-sm border border-line px-2 py-0.5 font-mono text-xs text-muted">{item}</li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+  <p class="mt-10 text-xs text-muted">{data.footnote}</p>
+</Section>

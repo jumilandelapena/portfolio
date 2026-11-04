@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+  CI: 'true'
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    name: Lint, types, build, tests, Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: No template leftovers
+        run: |
+          if git grep -i -E "bootstrapmade|snapfolio|alexander" -- . ":!.github/workflows"; then
+            echo "::error::template leftovers found"; exit 1
+          fi
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Check for visual baselines
+        id: baselines
+        run: |
+          if [ -d tests/visual/__screenshots__ ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::No visual baselines committed yet; this run writes them and uploads the visual-baselines artifact."
+          fi
+
+      - name: Playwright
+        run: pnpm test
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+          retention-days: 14
+
+      - name: Upload generated visual baselines
+        if: always() && steps.baselines.outputs.present == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: tests/visual/__screenshots__
+          retention-days: 14
+
+      - name: Lighthouse CI
+        run: pnpm lhci
+
+      - name: Write test status
+        run: pnpm status:write test-status/test-status.json
+
+      - name: Upload test status
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-status
+          path: test-status/test-status.json
+          retention-days: 14
+
+  external-links:
+    name: External links (non-blocking)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - name: Build
+        run: pnpm build
+        env:
+          PORTFOLIO_SKIP_GITHUB: '1'
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Check outbound links
+        run: pnpm test:external-links
+        env:
+          CHECK_EXTERNAL_LINKS: '1'

@@ -1,0 +1,9 @@
+{
+  "title": "xrwvm-fullstack_developer_capstone",
+  "repo": "jumilandelapena/xrwvm-fullstack_developer_capstone",
+  "url": "https://github.com/jumilandelapena/xrwvm-fullstack_developer_capstone",
+  "tagline": "IBM Full-Stack capstone: a car dealership review application with a Django back end, React front end and a Node.js and MongoDB microservice, containerised for the cloud.",
+  "stack": ["Django", "React", "Node.js", "MongoDB", "Docker"],
+  "areas": ["web", "api"],
+  "order": 12
+}

@@ -1,0 +1,23 @@
+{
+  "title": "This portfolio",
+  "repo": "jumilandelapena/portfolio",
+  "url": "https://github.com/jumilandelapena/portfolio",
+  "links": [
+    { "label": "Code", "url": "https://github.com/jumilandelapena/portfolio" },
+    { "label": "CI runs", "url": "https://github.com/jumilandelapena/portfolio/actions" }
+  ],
+  "tagline": "A static Astro site that tests itself on every push: Playwright across five browsers, axe, visual regression and Lighthouse budgets.",
+  "problem": "A portfolio that claims test-automation expertise should prove it in its own repository, not just describe it.",
+  "built": "An Astro and Tailwind CSS site with every piece of content in typed data collections, a dark and light theme that never flashes, and a Playwright suite on the Page Object Model: end-to-end, data-integrity, accessibility, keyboard and visual-regression tests on desktop Chromium, Firefox and WebKit plus mobile Chrome and Safari. CI gates every deploy on lint, type checks, the suite and Lighthouse budgets, then publishes a summary of that run to the page itself.",
+  "highlights": [
+    "Zero client JavaScript apart from the theme toggle and the filters",
+    "Content collections with Zod schemas: adding a project or certificate never touches markup",
+    "Deploys only when lint, types, tests and Lighthouse budgets all pass",
+    "The status panel at the top of the page is written by the run that deployed it"
+  ],
+  "stack": ["Astro", "TypeScript", "Tailwind CSS v4", "Playwright", "axe-core", "Lighthouse CI", "GitHub Actions"],
+  "testing": "Playwright with page objects and custom fixtures on five browser projects, axe-core in both themes, keyboard-only navigation, visual baselines from Playwright's Docker image, a data-integrity suite that renders every collection entry, and Lighthouse CI budgets of 95 or better in every category.",
+  "areas": ["web", "testing"],
+  "featured": true,
+  "order": 5
+}

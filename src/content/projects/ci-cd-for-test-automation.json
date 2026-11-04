@@ -1,0 +1,9 @@
+{
+  "title": "CI-CD-for-Test-Automation-JenkinsGitHub-Actions",
+  "repo": "jumilandelapena/CI-CD-for-Test-Automation-JenkinsGitHub-Actions",
+  "url": "https://github.com/jumilandelapena/CI-CD-for-Test-Automation-JenkinsGitHub-Actions",
+  "tagline": "Playwright test project wired into Jenkins and GitHub Actions pipelines, from the CI/CD for Test Automation course.",
+  "stack": ["Playwright", "Jenkins", "GitHub Actions"],
+  "areas": ["testing"],
+  "order": 11
+}

@@ -1,0 +1,20 @@
+{
+  "title": "Self-healing Playwright test agent",
+  "repo": "jumilandelapena/selfheal-playwright",
+  "url": "https://github.com/jumilandelapena/selfheal-playwright",
+  "links": [{ "label": "Code", "url": "https://github.com/jumilandelapena/selfheal-playwright" }],
+  "tagline": "An AI agent that repairs broken test locators, proves the fix on the live page, and opens a pull request for a human to review.",
+  "problem": "End-to-end suites break when markup changes even though the feature still works. Fixing locators by hand is slow, and an agent that patches blindly would hide real bugs.",
+  "built": "A pipeline that classifies each Playwright failure, replays the passing steps in headless Chromium, shows Claude the accessibility tree, the DOM and a screenshot, asks for up to three replacement locators as validated JSON, verifies each candidate on the live page, patches only that locator with ts-morph, re-runs the test and opens a pull request. Value assertions are reported, never \"healed\", and nothing is merged automatically.",
+  "highlights": [
+    "Classifies failures first: value assertions are reported, never patched",
+    "Each candidate must match exactly one visible element and survive the original action",
+    "Mock-provider demo heals 18 locators across 10 tests with no API key",
+    "Strict TypeScript, Vitest unit and e2e tests, GitHub Actions CI"
+  ],
+  "stack": ["TypeScript", "Playwright", "Claude API", "ts-morph", "zod", "GitHub Actions"],
+  "testing": "Vitest unit and end-to-end tests under strict TypeScript on GitHub Actions; the mock provider lets CI exercise the whole heal loop without an API key.",
+  "areas": ["testing", "ai"],
+  "featured": true,
+  "order": 1
+}

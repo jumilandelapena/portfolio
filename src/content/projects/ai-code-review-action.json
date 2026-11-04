@@ -1,0 +1,23 @@
+{
+  "title": "AI code review GitHub Action",
+  "repo": "jumilandelapena/ai-code-review-action",
+  "url": "https://github.com/jumilandelapena/ai-code-review-action",
+  "links": [
+    { "label": "Code", "url": "https://github.com/jumilandelapena/ai-code-review-action" },
+    { "label": "Demo PR", "url": "https://github.com/jumilandelapena/ai-code-review-action/pull/1" }
+  ],
+  "tagline": "A reusable GitHub Action that reviews every pull request with Claude and posts one review with inline comments and one-click fixes.",
+  "problem": "Review bots that comment on unchanged lines, repeat themselves on every push, or hide what they cost get switched off within a week.",
+  "built": "An Action that parses the unified diff itself so it can only comment on changed lines, measures every request with the token-counting endpoint, shares a cached system prompt across batches, validates each finding against the added lines, and posts one review with inline comments, suggestion blocks, a severity table, a verdict and the estimated cost. Findings already on the pull request are never posted twice.",
+  "highlights": [
+    "Structured output with a zod schema: findings, summary, verdict and estimated cost",
+    "Severity table, suggestion blocks, optional failing check via fail_on",
+    "71 unit tests, 13 eval cases, mock provider for CI without a key",
+    "Published as jumilandelapena/ai-code-review-action@v1"
+  ],
+  "stack": ["TypeScript", "GitHub Actions", "Claude API", "zod", "Vitest"],
+  "testing": "71 unit tests and 13 eval cases run without a key through a mock provider, and the repository reviews its own pull requests with the Action.",
+  "areas": ["ai", "testing"],
+  "featured": true,
+  "order": 3
+}

@@ -1,0 +1,54 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+
+import { url } from '../site.config';
+
+import Section from './Section.astro';
+
+const disciplines = (await getCollection('disciplines')).sort((a, b) => a.data.order - b.data.order);
+const resolved = await Promise.all(
+  disciplines.map(async (d) => ({ discipline: d, certifications: await getEntries(d.data.certifications) })),
+);
+---
+
+<Section
+  id="disciplines"
+  title="Also in the toolbox"
+  intro="Electronics engineering, project management, data analytics and digital marketing: what I can do, the credential behind it, and how it shows up in my engineering work."
+  quiet
+>
+  <div class="grid gap-8 md:grid-cols-2">
+    {resolved.map(({ discipline, certifications }) => (
+      <article id={`discipline-${discipline.id}`} class="rounded-md border border-line p-5">
+        <h3 class="font-semibold">{discipline.data.title}</h3>
+        <p class="mt-2 text-sm text-muted">{discipline.data.summary}</p>
+        <ul class="mt-3 list-disc space-y-1 pl-5 text-sm marker:text-muted">
+          {discipline.data.canDo.map((line) => (
+            <li>{line}</li>
+          ))}
+        </ul>
+        {(discipline.data.credentials.length > 0 || certifications.length > 0) && (
+          <p class="mt-3 max-w-none font-mono text-xs text-muted">
+            {discipline.data.credentials.map((c, i) => (
+              <>
+                {i > 0 && ' · '}
+                {c}
+              </>
+            ))}
+            {certifications.map((c, i) => (
+              <>
+                {(i > 0 || discipline.data.credentials.length > 0) && ' · '}
+                <a href={url(`#cert-${c.id}`)} class="underline decoration-line underline-offset-4 hover:text-accent">
+                  {c.data.title}
+                </a>
+              </>
+            ))}
+          </p>
+        )}
+        <p class="mt-3 text-sm">
+          <span class="font-medium">As an engineer:</span> {discipline.data.asEngineer}
+        </p>
+      </article>
+    ))}
+  </div>
+</Section>

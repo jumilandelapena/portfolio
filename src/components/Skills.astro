@@ -1,0 +1,60 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+
+import { url } from '../site.config';
+
+import Section from './Section.astro';
+
+const groups = (await getCollection('skills')).sort((a, b) => a.data.order - b.data.order);
+
+const resolved = await Promise.all(
+  groups.map(async (group) => ({
+    group,
+    items: await Promise.all(
+      group.data.items.map(async (item) => ({
+        item,
+        projects: await getEntries(item.projects),
+        experience: await getEntries(item.experience),
+      })),
+    ),
+  })),
+);
+---
+
+<Section
+  id="skills"
+  title="Skills"
+  intro="Grouped by what I reach for first. Each skill links to the project or role where it was used; there are no self-rated percentages here."
+>
+  <div class="grid gap-10 md:grid-cols-2">
+    {resolved.map(({ group, items }) => (
+      <div>
+        <h3 class="text-lg font-semibold">{group.data.title}</h3>
+        <ul class="mt-4 divide-y divide-line border-y border-line">
+          {items.map(({ item, projects, experience }) => (
+            <li class="py-3">
+              <p class="m-0 max-w-none font-medium">{item.name}</p>
+              <p class="mt-1 text-sm text-muted">{item.note}</p>
+              {(projects.length > 0 || experience.length > 0) && (
+                <p class="mt-1.5 max-w-none font-mono text-xs text-muted">
+                  used in{' '}
+                  {[
+                    ...projects.map((p) => ({ href: `#project-${p.id}`, label: p.data.title })),
+                    ...experience.map((e) => ({ href: `#experience-${e.id}`, label: e.data.role })),
+                  ].map((link, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      <a href={url(link.href)} class="underline decoration-line underline-offset-4 hover:text-accent">
+                        {link.label}
+                      </a>
+                    </>
+                  ))}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</Section>
