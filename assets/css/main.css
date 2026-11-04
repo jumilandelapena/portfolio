@@ -2763,3 +2763,469 @@ section,
     transform: none !important;
   }
 }
+
+/*--------------------------------------------------------------
+# Certificates: extra provider logos
+--------------------------------------------------------------*/
+.certificates .provider-logo.meta {
+  background: linear-gradient(135deg, #0866ff, color-mix(in srgb, #0866ff, transparent 25%));
+}
+
+.certificates .provider-logo.meta i,
+.certificates .provider-logo.multi i {
+  color: #ffffff;
+}
+
+.certificates .provider-logo.multi {
+  background: linear-gradient(135deg, #2e8b57, color-mix(in srgb, #2e8b57, transparent 25%));
+}
+
+.certificates .certificate-content h3 {
+  color: var(--heading-color);
+}
+
+/*--------------------------------------------------------------
+# Achievements Section (Work Impact)
+--------------------------------------------------------------*/
+.achievements .stat-card {
+  height: 100%;
+  padding: 28px 20px;
+  border-radius: 20px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--surface-color), var(--accent-color) 6%) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.achievements .stat-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-color);
+}
+
+.achievements .stat-card i {
+  font-size: 28px;
+  color: var(--accent-color);
+  margin-bottom: 4px;
+}
+
+.achievements .stat-number {
+  font-family: var(--heading-font);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--heading-color);
+}
+
+.achievements .stat-label {
+  font-weight: 600;
+  color: var(--default-color);
+}
+
+.achievements .stat-note {
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  line-height: 1.4;
+}
+
+.achievements .impact-card {
+  height: 100%;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--surface-color), var(--accent-color) 5%) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.achievements .impact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+}
+
+.achievements .impact-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.achievements .impact-icon {
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 20%));
+}
+
+.achievements .impact-icon i {
+  font-size: 26px;
+  color: var(--contrast-color);
+}
+
+.achievements .impact-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--heading-color);
+}
+
+.achievements .impact-meta {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.achievements .impact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.achievements .impact-list li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  color: color-mix(in srgb, var(--default-color), transparent 10%);
+}
+
+.achievements .impact-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-color);
+}
+
+.achievements .impact-list strong {
+  color: var(--heading-color);
+}
+
+.achievements .impact-tags,
+.projects .project-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.achievements .impact-tags li,
+.projects .project-tags li {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%);
+  color: var(--heading-color);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+}
+
+.achievements .impact-footnote {
+  margin: 30px 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+/*--------------------------------------------------------------
+# Projects Section
+--------------------------------------------------------------*/
+.projects .project-card {
+  height: 100%;
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--surface-color) 0%, color-mix(in srgb, var(--surface-color), var(--accent-color) 5%) 100%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+.projects .project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 50%));
+}
+
+.projects .project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-color);
+}
+
+.projects .project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.projects .project-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), transparent 20%));
+  transition: all 0.3s ease;
+}
+
+.projects .project-card:hover .project-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.projects .project-icon i {
+  font-size: 28px;
+  color: var(--contrast-color);
+}
+
+.projects .project-links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.projects .project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--heading-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+  transition: all 0.3s ease;
+}
+
+.projects .project-links a:hover {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.projects .project-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.projects .project-card h3 a {
+  color: var(--heading-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.projects .project-card h3 a:hover {
+  color: var(--accent-color);
+}
+
+.projects .project-tagline {
+  color: var(--accent-color);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+.projects .project-description {
+  color: color-mix(in srgb, var(--default-color), transparent 15%);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.projects .project-card code {
+  font-size: 0.85em;
+  color: var(--heading-color);
+  background-color: color-mix(in srgb, var(--accent-color), transparent 88%);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.projects .project-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  flex: 1 1 auto;
+}
+
+.projects .project-highlights li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--default-color), transparent 10%);
+}
+
+.projects .project-highlights li::before {
+  content: "\f26e";
+  font-family: "bootstrap-icons";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  color: var(--accent-color);
+}
+
+.projects .more-projects {
+  margin-top: 50px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: color-mix(in srgb, var(--surface-color), var(--background-color) 40%);
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 88%);
+}
+
+.projects .more-projects h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.projects .more-projects h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--accent-color);
+}
+
+.projects .repo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.projects .repo-list a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  align-items: start;
+  padding: 14px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--default-color);
+  background-color: color-mix(in srgb, var(--surface-color), var(--background-color) 50%);
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.projects .repo-list a:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  border-left-color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+.projects .repo-list a i {
+  color: var(--accent-color);
+  font-size: 18px;
+  grid-row: 1 / span 2;
+  margin-top: 2px;
+}
+
+.projects .repo-name {
+  font-weight: 700;
+  color: var(--heading-color);
+  word-break: break-word;
+}
+
+.projects .repo-desc {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+}
+
+.projects .more-projects .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.projects .more-projects .btn-outline:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+@media (max-width: 768px) {
+  .achievements .impact-card,
+  .projects .project-card,
+  .projects .more-projects {
+    padding: 25px 20px;
+  }
+
+  .achievements .stat-number {
+    font-size: 2.1rem;
+  }
+
+  .projects .repo-list {
+    grid-template-columns: 1fr;
+  }
+
+  .projects .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .projects .project-links {
+    justify-content: flex-start;
+  }
+}
+
+/* Resume sidebar links were rendering at the dim list colour; make them readable. */
+.resume .resume-side .contact-info li a {
+  color: var(--heading-color);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent-color), transparent 40%);
+}
+
+.resume .resume-side .contact-info li a:hover {
+  color: var(--accent-color);
+}

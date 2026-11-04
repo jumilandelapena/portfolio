@@ -1,8 +1,8 @@
 # Portfolio — Engr. Jumilan L. Dela Peña
 
-Personal portfolio and online résumé for **Engr. Jumilan L. Dela Peña** — licensed
-Electronics Engineer and QA Automation Engineer based in Cagayan de Oro City,
-Philippines.
+Personal portfolio and online résumé for **Engr. Jumilan L. Dela Peña** — Full-Stack
+Developer and QA Automation Engineer at ClinicMind, licensed Electronics Engineer,
+based in Cagayan de Oro City, Philippines.
 
 **Live:** https://jumilandelapena.github.io/portfolio/
 
@@ -25,7 +25,7 @@ open `index.html` in a browser and it runs.
 
 ```
 index.html              the entire site — hero, about, skills, résumé,
-                        certificates, contact
+                        work impact, projects, certificates, contact
 assets/
   css/main.css          all styling, including the blue theme override
                         at the end of the file
@@ -56,6 +56,12 @@ python -m http.server 8000    # or: npx serve
 Pushing to `main` publishes the site. GitHub Pages redeploys automatically.
 
 ## Notes
+
+- The **Work Impact** numbers (merged merge requests, commits, issues) are a
+  snapshot of Jumi's GitLab activity at ClinicMind taken on 2026-11-04. They
+  are hard-coded in `index.html`; refresh them by hand when updating the site.
+- The **Projects** section links to public GitHub repositories; keep the
+  descriptions in sync with each repository's README.
 
 - `assets/vendor/` is intentionally trimmed to the ten files the page actually
   requests. If you add a component that needs Swiper, GLightbox, Isotope or
