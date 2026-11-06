@@ -1,0 +1,27 @@
+{
+  "title": "Autofix agent: from GitHub issue to pull request",
+  "repo": "jumilandelapena/autofix-agent",
+  "url": "https://github.com/jumilandelapena/autofix-agent",
+  "links": [
+    { "label": "Code", "url": "https://github.com/jumilandelapena/autofix-agent" },
+    {
+      "label": "Agent PRs on the demo repo",
+      "url": "https://github.com/jumilandelapena/demo-inventory-api/pulls?q=label%3Aai-generated"
+    }
+  ],
+  "tagline": "A mini SWE-agent that turns a GitHub issue into a reviewed pull request: it reproduces the bug with a failing test in a Docker sandbox, fixes it, verifies the suite and opens the PR. It never merges.",
+  "problem": "A model that edits code is only worth trusting when something other than the model proves the fix: a test that failed before the change, a suite that still passes after it, and a human review before anything merges.",
+  "built": "A hand-written agent loop on the Claude Messages API (Claude Opus 5.5, no framework) with strict JSON-schema tools, prompt caching, context editing past 150k tokens, and hard caps on steps, cost and wall-clock time computed from real token usage. Given an issue URL it clones the repository into a fresh Docker container, installs dependencies, records a baseline test run, then cuts the container off from the network. The harness, not the model, enforces three phases: write a test that fails, only then change source, and submit is accepted only after the suite is re-run with no regressions, no existing test has lost lines, and the linter passes. The diff is copied out as a patch, committed on a fix/issue-N branch and opened as a PR with the root cause, before and after test output, token cost and a review checklist.",
+  "highlights": [
+    "Live evaluation on six planted bugs: 6/6 fixed, 4 to 5 model turns each, $0.28 in total",
+    "Sandbox: non-root container with CPU, memory and process limits, network cut after install, no secrets inside, command denylist",
+    "The harness rejects any fix that weakens existing tests",
+    "Every API call and tool result logged to a JSONL trajectory with a static HTML viewer",
+    "The first live run exposed a real harness bug (a test written through a shell heredoc that the file tool never saw); the model reported the contradiction instead of gaming it, and that case is now a regression test"
+  ],
+  "stack": ["TypeScript", "Node 20", "Claude API", "zod", "dockerode", "Octokit", "Vitest", "GitHub Actions"],
+  "testing": "A mock provider replays recorded trajectories, so the whole pipeline runs in CI without an API key, including the real Docker sandbox tests. In live runs the harness re-runs the target suite and rejects any regression before a PR is opened.",
+  "areas": ["ai", "testing"],
+  "featured": true,
+  "order": 0
+}
