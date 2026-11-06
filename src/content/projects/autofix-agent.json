@@ -1,0 +1,29 @@
+{
+  "title": "Autofix agent (mini SWE-agent)",
+  "repo": "jumilandelapena/autofix-agent",
+  "url": "https://github.com/jumilandelapena/autofix-agent",
+  "links": [
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/autofix-agent"
+    },
+    {
+      "label": "Agent PRs on the demo repo",
+      "url": "https://github.com/jumilandelapena/demo-inventory-api/pulls?q=label%3Aai-generated"
+    }
+  ],
+  "tagline": "Turns a GitHub issue into a reviewed pull request: a failing test first, then the fix, proven in a Docker sandbox. It never merges.",
+  "problem": "A model that edits code is only worth trusting when something other than the model proves the fix.",
+  "built": "A hand-written agent loop on the Claude Messages API (Claude Opus 5.5) with JSON-schema tools, prompt caching and hard caps on steps, cost and time. The harness, not the model, enforces the order inside a non-root, network-cut Docker container: a failing test first, then the fix, and submit only once the suite, a no-weakened-tests check and the linter pass. The patch lands on a fix/issue-N branch as a PR with root cause, test output and token cost.",
+  "highlights": [
+    "Six planted bugs: 6/6 fixed in 4 to 5 turns each, $0.28 in total",
+    "Sandbox with CPU, memory and process limits, no network after install, no secrets, command denylist",
+    "Every run logged as a JSONL trajectory with a viewer",
+    "The first live run exposed a real harness bug; the model reported it instead of gaming it, now a regression test"
+  ],
+  "stack": ["TypeScript", "Node 20", "Claude API", "zod", "dockerode", "Octokit", "Vitest", "GitHub Actions"],
+  "testing": "A mock provider replays recorded trajectories, so the whole pipeline runs in CI without an API key, including the real Docker sandbox tests.",
+  "areas": ["ai", "testing"],
+  "featured": true,
+  "order": 0
+}
