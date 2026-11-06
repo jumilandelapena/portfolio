@@ -38,8 +38,8 @@ const socials = (await getCollection('socials')).sort((a, b) => a.data.order - b
       <a href={url('#projects')} class="btn btn-primary" data-testid="hero-cta">
         Projects
       </a>
-      <a href={url(RESUME_PATH)} class="btn btn-outline" data-testid="resume-link">
-        Résumé (PDF)
+      <a href={url(RESUME_PATH)} class="btn btn-outline" target="_blank" rel="noopener" data-testid="resume-link">
+        Résumé (PDF)<span class="sr-only"> (opens in a new tab)</span>
       </a>
     </div>
     <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm" aria-label="Profiles">

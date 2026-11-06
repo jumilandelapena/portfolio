@@ -45,6 +45,26 @@ test.describe('navigation', () => {
     expect(response.headers()['content-type']).toContain('application/pdf');
   });
 
+  test('both résumé links open the PDF in a new tab and say so to screen readers', async ({ home, page }) => {
+    for (const link of [home.resumeLink, home.aboutResumeLink]) {
+      await expect(link).toHaveAttribute('href', '/portfolio/resume.pdf');
+      await expect(link).toHaveAttribute('target', '_blank');
+      await expect(link).toHaveAttribute('rel', /noopener/);
+      await expect(link).toHaveAccessibleName(/opens in a new tab/);
+    }
+    // The popup may still be about:blank when it is reported, and headless engines may turn a PDF
+    // into a download and close it again, so the proof is the request the new tab makes.
+    const before = page.url();
+    const [popup, pdfRequest] = await Promise.all([
+      page.waitForEvent('popup'),
+      page.context().waitForEvent('request', (r) => new URL(r.url()).pathname === '/portfolio/resume.pdf'),
+      home.resumeLink.click(),
+    ]);
+    expect(pdfRequest.frame().page()).not.toBe(page);
+    expect(page.url()).toBe(before);
+    await popup.close().catch(() => undefined);
+  });
+
   test('the page never overflows horizontally', async ({ home, page }) => {
     await expect(home.heroHeading).toBeVisible();
     const overflow = await page.evaluate(() => ({

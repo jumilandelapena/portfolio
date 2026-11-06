@@ -47,8 +47,14 @@ const languages = ['English', 'Filipino'];
         <div>
           <dt class="font-mono text-xs text-muted">Résumé</dt>
           <dd class="mt-0.5">
-            <a href={url(RESUME_PATH)} class="link-prose">
-              Download the PDF
+            <a
+              href={url(RESUME_PATH)}
+              class="link-prose"
+              target="_blank"
+              rel="noopener"
+              data-testid="about-resume-link"
+            >
+              Download the PDF<span class="sr-only"> (opens in a new tab)</span>
             </a>
           </dd>
         </div>

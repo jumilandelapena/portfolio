@@ -9,6 +9,7 @@ export class HomePage extends BasePage {
   readonly scrollProgress: Locator;
   readonly statusPanel: Locator;
   readonly resumeLink: Locator;
+  readonly aboutResumeLink: Locator;
   readonly projects: Locator;
   readonly projectFilters: Locator;
   readonly projectCount: Locator;
@@ -32,6 +33,7 @@ export class HomePage extends BasePage {
     this.scrollProgress = page.getByTestId('scroll-progress');
     this.statusPanel = page.getByTestId('test-status');
     this.resumeLink = page.getByTestId('resume-link');
+    this.aboutResumeLink = page.getByTestId('about-resume-link');
 
     this.projects = page.getByRole('region', { name: 'Projects' });
     this.projectFilters = this.projects.getByRole('group', { name: 'Filter projects by area' });
