@@ -2,7 +2,12 @@
   "title": "Little Lemon restaurant API",
   "repo": "jumilandelapena/little-lemon-api",
   "url": "https://github.com/jumilandelapena/little-lemon-api",
-  "links": [{ "label": "Code", "url": "https://github.com/jumilandelapena/little-lemon-api" }],
+  "links": [
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/little-lemon-api"
+    }
+  ],
   "tagline": "A Django REST Framework API for a restaurant: public menu, customer carts, orders and role-based access for managers and delivery crew.",
   "problem": "A restaurant needs one API for its public menu, customer carts and orders, where managers and delivery crew can each do only their part.",
   "built": "Token authentication with Djoser, three roles driven by Django groups, server-side cart pricing that turns into an order in one request, an order lifecycle for managers and delivery crew, and filtering, search, ordering, pagination and per-user throttling. Built for the Meta back-end track and taken further.",
@@ -15,5 +20,5 @@
   "testing": "58 automated tests cover every endpoint and role, run on GitHub Actions on every push.",
   "areas": ["api"],
   "featured": true,
-  "order": 4
+  "order": 6
 }

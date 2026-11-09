@@ -3,8 +3,14 @@
   "repo": "jumilandelapena/portfolio",
   "url": "https://github.com/jumilandelapena/portfolio",
   "links": [
-    { "label": "Code", "url": "https://github.com/jumilandelapena/portfolio" },
-    { "label": "CI runs", "url": "https://github.com/jumilandelapena/portfolio/actions" }
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/portfolio"
+    },
+    {
+      "label": "CI runs",
+      "url": "https://github.com/jumilandelapena/portfolio/actions"
+    }
   ],
   "tagline": "A static Astro site that tests itself on every push: Playwright across five browsers, axe, visual regression and Lighthouse budgets.",
   "problem": "A portfolio that claims test-automation expertise should prove it in its own repository, not just describe it.",
@@ -19,5 +25,5 @@
   "testing": "Playwright with page objects and custom fixtures on five browser projects, axe-core in both themes, keyboard-only navigation, visual baselines from Playwright's Docker image, a data-integrity suite that renders every collection entry, and Lighthouse CI budgets of 95 or better in every category.",
   "areas": ["web", "testing"],
   "featured": true,
-  "order": 5
+  "order": 7
 }

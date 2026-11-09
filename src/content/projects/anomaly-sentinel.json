@@ -1,0 +1,33 @@
+{
+  "title": "Anomaly sentinel (AI incident investigator)",
+  "repo": "jumilandelapena/anomaly-sentinel",
+  "url": "https://github.com/jumilandelapena/anomaly-sentinel",
+  "links": [
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/anomaly-sentinel"
+    },
+    {
+      "label": "Eval results",
+      "url": "https://github.com/jumilandelapena/anomaly-sentinel/blob/main/docs/eval-results.md"
+    },
+    {
+      "label": "Demo GIF",
+      "url": "https://github.com/jumilandelapena/anomaly-sentinel/blob/main/docs/demo.gif"
+    }
+  ],
+  "tagline": "A statistical detector spots anomalies in microservice metrics in about 30 s, and a Claude Opus 5.5 agent explains the root cause with evidence.",
+  "problem": "When production breaks, the alert names a symptom, not a cause, and the on-call engineer spends the first 20 minutes opening dashboards, reading logs and checking deploys by hand.",
+  "built": "Four FastAPI microservices emit Prometheus metrics and logs. A robust z-score on a seasonal median baseline plus an Isolation Forest flag anomalies and group them into incidents. A Claude Opus 5.5 agent then investigates with six read-only tools and streams a structured root-cause report, with cost, to a React dashboard. Statistics decide when something is wrong; the model only explains why.",
+  "highlights": [
+    "Eight-scenario eval: 8/8 incidents detected, 29 s mean latency, 0 false incidents",
+    "Six capped tools instead of a data dump; prompt caching with cached tokens shown beside the cost",
+    "Typed reports through a pydantic schema; a refusal marks the incident incomplete",
+    "A mock provider runs the real path, so CI needs no API key"
+  ],
+  "stack": ["Python", "FastAPI", "Prometheus", "scikit-learn", "Claude API", "React", "Docker", "GitHub Actions"],
+  "testing": "34 automated tests across the detector, agent, API and dashboard, plus a Playwright smoke test on the full Docker stack, all green in CI; an eight-scenario eval harness writes its results into the README.",
+  "areas": ["ai", "api", "web"],
+  "featured": true,
+  "order": 1
+}
