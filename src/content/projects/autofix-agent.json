@@ -25,5 +25,5 @@
   "testing": "A mock provider replays recorded trajectories, so the whole pipeline runs in CI without an API key, including the real Docker sandbox tests.",
   "areas": ["ai", "testing"],
   "featured": true,
-  "order": 0
+  "order": 2
 }

@@ -53,8 +53,8 @@
       },
       {
         "name": "React",
-        "note": "Meta and IBM certified; React front ends in the PDF chat app and the school website.",
-        "projects": ["pdf-chat-rag", "sta", "e-plantshopping"]
+        "note": "Meta and IBM certified; React front ends in the live incident dashboard, the PDF chat app and the school website.",
+        "projects": ["anomaly-sentinel", "pdf-chat-rag", "sta", "e-plantshopping"]
       },
       {
         "name": "Node.js back ends",
@@ -64,8 +64,8 @@
       },
       {
         "name": "Python, Django and FastAPI",
-        "note": "Django REST Framework with role-based access, and a FastAPI retrieval service with streaming.",
-        "projects": ["little-lemon-api", "pdf-chat-rag"]
+        "note": "Django REST Framework with role-based access, FastAPI microservices with Prometheus metrics, and a FastAPI retrieval service with streaming.",
+        "projects": ["anomaly-sentinel", "little-lemon-api", "pdf-chat-rag"]
       },
       {
         "name": "REST APIs, MongoDB and SQL",
@@ -94,7 +94,7 @@
       {
         "name": "Docker",
         "note": "A locked-down sandbox for an autonomous coding agent, one-command stacks with Docker Compose, and Playwright's Docker image for reproducible screenshot baselines.",
-        "projects": ["autofix-agent", "pdf-chat-rag", "portfolio"]
+        "projects": ["anomaly-sentinel", "autofix-agent", "pdf-chat-rag", "portfolio"]
       },
       {
         "name": "Storybook and visual baselines",
@@ -115,8 +115,8 @@
     "items": [
       {
         "name": "Claude API and structured outputs",
-        "note": "Validated JSON outputs, prompt caching, context editing and token budgeting in three shipped tools, including a hand-written agent loop.",
-        "projects": ["autofix-agent", "selfheal-playwright", "ai-code-review-action"]
+        "note": "Validated JSON outputs, prompt caching, tool use and token budgeting in four shipped tools, from a hand-written agent loop to an incident investigator.",
+        "projects": ["anomaly-sentinel", "autofix-agent", "selfheal-playwright", "ai-code-review-action"]
       },
       {
         "name": "Retrieval-augmented generation",

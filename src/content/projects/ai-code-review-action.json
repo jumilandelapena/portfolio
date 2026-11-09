@@ -3,8 +3,14 @@
   "repo": "jumilandelapena/ai-code-review-action",
   "url": "https://github.com/jumilandelapena/ai-code-review-action",
   "links": [
-    { "label": "Code", "url": "https://github.com/jumilandelapena/ai-code-review-action" },
-    { "label": "Demo PR", "url": "https://github.com/jumilandelapena/ai-code-review-action/pull/1" }
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/ai-code-review-action"
+    },
+    {
+      "label": "Demo PR",
+      "url": "https://github.com/jumilandelapena/ai-code-review-action/pull/1"
+    }
   ],
   "tagline": "A reusable GitHub Action that reviews every pull request with Claude and posts one review with inline comments and one-click fixes.",
   "problem": "Review bots that comment on unchanged lines, repeat themselves on every push, or hide what they cost get switched off within a week.",
@@ -19,5 +25,5 @@
   "testing": "71 unit tests and 13 eval cases run without a key through a mock provider, and the repository reviews its own pull requests with the Action.",
   "areas": ["ai", "testing"],
   "featured": true,
-  "order": 3
+  "order": 5
 }
