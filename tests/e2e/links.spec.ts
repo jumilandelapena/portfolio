@@ -20,7 +20,7 @@ test.describe('links', () => {
     expect(hrefs.length).toBeGreaterThan(70);
     for (const href of hrefs) {
       expect.soft(() => new URL(href), href).not.toThrow();
-      expect.soft(href, href).toMatch(/^https:\/\/(github\.com|www\.coursera\.org)\//);
+      expect.soft(href, href).toMatch(/^https:\/\/(github\.com|www\.coursera\.org|drive\.google\.com)\//);
     }
   });
 

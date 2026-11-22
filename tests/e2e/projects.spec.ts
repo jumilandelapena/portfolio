@@ -11,13 +11,20 @@ test.describe('projects', () => {
     await expect(cards.nth(3)).toHaveAttribute('id', 'project-autofix-agent');
   });
 
-  test('the PH Payroll card is marked "Private repository", with a plain-text title and no link', async ({ home }) => {
+  test('the PH Payroll card is marked "Private repository", with a plain-text title and a demo video link instead of code', async ({
+    home,
+  }) => {
     const card = home.project('ph-payroll');
     await expect(card.getByRole('heading', { level: 3 })).toHaveText(
       'PH Payroll (payroll system for Philippine companies)',
     );
     await expect(home.projectMeta('ph-payroll')).toHaveText('Private repository');
-    await expect(card.getByRole('link')).toHaveCount(0);
+    await expect(card.getByRole('link')).toHaveCount(1);
+    await expect(card.getByRole('link', { name: 'Demo video', exact: true })).toHaveAttribute(
+      'href',
+      'https://drive.google.com/file/d/1sQizJs0V6q7KtLqdE_zdarypSeCT0EWJ/view?usp=sharing',
+    );
+    await expect(card.getByRole('link', { name: 'Code', exact: true })).toHaveCount(0);
   });
 
   test('the PH Payroll card presents a team project, names the role and says why the code is private', async ({
