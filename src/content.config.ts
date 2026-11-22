@@ -25,23 +25,40 @@ const socials = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ pattern: '*.json', base: './src/content/projects' }),
-  schema: z.object({
-    title: nonEmpty,
-    repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/, 'expected owner/name'),
-    url: httpsUrl,
-    links: z.array(z.object({ label: nonEmpty, url: httpsUrl })).default([]),
-    tagline: nonEmpty,
-    problem: nonEmpty.optional(),
-    built: nonEmpty.optional(),
-    blurb: nonEmpty.optional(),
-    highlights: z.array(nonEmpty).default([]),
-    stack: z.array(nonEmpty).default([]),
-    testing: nonEmpty.optional(),
-    areas: z.array(z.enum(projectAreas)).min(1),
-    featured: z.boolean().default(false),
-    order: z.number().int(),
-    todo,
-  }),
+  schema: z
+    .object({
+      title: nonEmpty,
+      /**
+       * The repository is not public. The card shows "Private repository" in place of it, with a
+       * plain-text title and no GitHub lookup.
+       */
+      private: z.boolean().default(false),
+      repo: z
+        .string()
+        .regex(/^[\w.-]+\/[\w.-]+$/, 'expected owner/name')
+        .optional(),
+      url: httpsUrl.optional(),
+      /** Built with a team: the card says "What the team built" instead of "What I built". */
+      team: z.boolean().default(false),
+      links: z.array(z.object({ label: nonEmpty, url: httpsUrl })).default([]),
+      tagline: nonEmpty,
+      problem: nonEmpty.optional(),
+      built: nonEmpty.optional(),
+      blurb: nonEmpty.optional(),
+      highlights: z.array(nonEmpty).default([]),
+      stack: z.array(nonEmpty).default([]),
+      testing: nonEmpty.optional(),
+      areas: z.array(z.enum(projectAreas)).min(1),
+      featured: z.boolean().default(false),
+      order: z.number().int(),
+      todo,
+    })
+    .refine((p) => p.private || (p.repo !== undefined && p.url !== undefined), {
+      message: 'a public project needs its repo and url',
+    })
+    .refine((p) => !p.private || (p.repo === undefined && p.url === undefined), {
+      message: 'a private project has no public repo or url',
+    }),
 });
 
 const experience = defineCollection({

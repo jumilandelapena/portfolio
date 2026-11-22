@@ -4,15 +4,25 @@ import { expect, test } from '../fixtures/test';
 const number = new Intl.NumberFormat('en-US');
 
 test.describe('content collections render completely', () => {
-  test('every project entry is on the page with its repository link', async ({ home }) => {
+  test('every project entry is on the page with its repository link, or marked private with no link', async ({
+    home,
+  }) => {
     expect(content.projects.length).toBeGreaterThanOrEqual(10);
     for (const project of content.projects) {
       const item = home.project(project.id);
+      const titleLink = item.getByRole('link', { name: project.title, exact: true });
       await expect(item, project.id).toBeAttached();
-      await expect(item.getByRole('link', { name: project.title, exact: true }), project.id).toHaveAttribute(
-        'href',
-        project.url,
-      );
+      if (project.private) {
+        expect(project.repo, `${project.id} is private`).toBeUndefined();
+        expect(project.url, `${project.id} is private`).toBeUndefined();
+        await expect(item.getByText(project.title, { exact: true }), project.id).toBeAttached();
+        await expect(titleLink, project.id).toHaveCount(0);
+        await expect(home.projectMeta(project.id), project.id).toHaveText('Private repository');
+      } else {
+        if (!project.url) throw new Error(`${project.id}: a public project needs its url`);
+        await expect(titleLink, project.id).toHaveAttribute('href', project.url);
+        await expect(home.projectMeta(project.id), project.id).not.toContainText('Private');
+      }
       for (const link of project.links ?? []) {
         await expect(
           item.getByRole('link', { name: link.label, exact: true }),

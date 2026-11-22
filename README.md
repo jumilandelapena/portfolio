@@ -58,8 +58,8 @@ call `getCollection()` and never contain content. Cross-references use
 `reference()`: a skill points at the projects and roles where it was used, a
 course points at its certification, a discipline at its certificates.
 
-At build time `src/lib/github.ts` optionally fetches each project's primary
-language and last push date from the GitHub API (authenticated with
+At build time `src/lib/github.ts` optionally fetches each public project's
+primary language and last push date from the GitHub API (authenticated with
 `GITHUB_TOKEN` in CI). Any failure logs a warning and the page shows the static
 data only; the build never fails because of it.
 
@@ -168,6 +168,11 @@ Edit a data file, run `pnpm build`, open a pull request. No markup changes.
   `url`, `tagline`, `areas` (`testing`, `ai`, `api`, `web`), `order` and, for a
   featured entry, `featured: true`, `problem`, `built`, `testing`, `highlights`,
   `stack` and `links`. The id is the file name and is what skills reference.
+  When the repository is not public, leave out `repo` and `url` and set
+  `private: true`: the card shows "Private repository", a plain-text title and
+  no GitHub lookup.
+  Set `team: true` for work built with a team: the card then says "What the
+  team built" instead of "What I built".
 - **A certification:** add `src/content/certifications/<id>.json` (`title`,
   `provider`, `kind`, `url`, `areas`, `year`, `description`, `order`), then its
   courses to `src/content/courses.json` with `"certification": "<id>"`.
