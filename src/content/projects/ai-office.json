@@ -18,7 +18,7 @@
     "The README lists its limits: the model follows the approval rules and no code enforces them; the hook checks that files changed, not that they are true"
   ],
   "stack": ["Claude Code", "Subagents", "Hooks", "Node.js", "Markdown", "HTML canvas"],
-  "testing": "There is no automated test suite, and the README says so. The hook was checked by hand with simulated start and stop events; the page script was checked for syntax and run once with a stubbed browser and sample desks. The template has not been published as a fresh live page, so that path was not re-tested.",
+  "testing": "43 automated tests on Node's built-in test runner, with no dependencies: the hook (it blocks once, passes after the files change and never traps a desk on bad input), the folder structure, the live page's script on a stubbed browser, the survey tool and a privacy check. GitHub Actions runs them on Linux and Windows with Node 20 and 22. The published live page with its saved data is not exercised, and the README says so.",
   "areas": ["ai"],
   "featured": true,
   "order": 0

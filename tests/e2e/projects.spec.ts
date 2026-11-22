@@ -46,7 +46,7 @@ test.describe('projects', () => {
     );
     await expect(home.projectMeta('ai-office')).toContainText('jumilandelapena/ai-office');
     await expect(card).toContainText('Built on Claude Code, and it runs inside Claude Code.');
-    await expect(card).toContainText('There is no automated test suite, and the README says so.');
+    await expect(card).toContainText('GitHub Actions runs them on Linux and Windows with Node 20 and 22.');
   });
 
   test('the anomaly sentinel card links the code, eval results and demo, and states its eval result', async ({
