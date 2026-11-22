@@ -1,0 +1,29 @@
+{
+  "title": "PH Payroll (payroll system for Philippine companies)",
+  "private": true,
+  "team": true,
+  "tagline": "A web payroll system for Philippine companies, installed once per company on the office network with no internet needed. A team project; my role was developer.",
+  "problem": "Philippine payroll has to get SSS, PhilHealth, Pag-IBIG and withholding tax right, plus the labour department's (DOLE) pay rules for overtime, holidays and night work, and the rates change. One wrong rule means wrong pay.",
+  "built": "A Django and PostgreSQL application with server-rendered pages and HTMX, installed with Docker Compose. Three roles (Admin, HR/Payroll Officer, Employee) cover employee records, attendance, leave, loans and 13th-month pay. A payroll run is computed, approved and locked; a locked payslip is a saved copy that later rate changes never alter. The pay rules are plain Python with no database code, and money is always a Decimal. The code is proprietary, so the repository is private.",
+  "highlights": [
+    "Government rates are data, not code: each table has a start date and an official source, and an Admin adds the next one when the law changes",
+    "Government numbers are encrypted in the database, and an audit log records who changed what, and when",
+    "Payslips as PDF, a payroll summary that opens in Excel, and monthly remittance summaries with CSV export",
+    "No internet at run time: every page asset ships inside the app, with daily backups and optional HTTPS"
+  ],
+  "stack": [
+    "Python",
+    "Django",
+    "PostgreSQL",
+    "HTMX",
+    "WeasyPrint",
+    "pytest",
+    "Playwright",
+    "Docker Compose",
+    "GitHub Actions"
+  ],
+  "testing": "pytest unit tests cover every pay rule and every page, and Playwright browser tests click through the app like a person. Both run on GitHub Actions on every push, the unit tests against PostgreSQL. Every feature has a written test case, and a test fails when that document and the code stop agreeing.",
+  "areas": ["web"],
+  "featured": true,
+  "order": -1
+}

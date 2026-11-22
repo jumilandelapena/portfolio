@@ -1,0 +1,25 @@
+{
+  "title": "AI office (multi-agent workspace on Claude Code)",
+  "repo": "jumilandelapena/ai-office",
+  "url": "https://github.com/jumilandelapena/ai-office",
+  "links": [
+    {
+      "label": "Code",
+      "url": "https://github.com/jumilandelapena/ai-office"
+    }
+  ],
+  "tagline": "A template for a multi-agent workspace built on Claude Code: one main agent routes work to specialist agents, and a live page shows what each one is doing.",
+  "problem": "Once more than one AI agent works for you, it gets hard to tell which one has a task, what it finished and what is waiting on an answer, and each new session starts without the facts the last one learned.",
+  "built": "Built on Claude Code, and it runs inside Claude Code. A handbook makes the session opened in the folder the main agent, which routes each request to a specialist \"desk\": a subagent with its own mission, home folder and limits. Desks share a memory of small notes, report on a status board and write a work log. A live page draws the office as an animated floor where I read reports, send instructions and answer a desk's question with a button. The repository is a template of my own office, with three example desks and example memory and status files.",
+  "highlights": [
+    "A hook stops a desk from finishing until its status file and the work log have changed; it blocks once and says what is missing",
+    "By the handbook's rules a push, merge, deletion or sent message is never run from the live page alone: the main agent asks in chat first",
+    "An instruction sent while no session is open waits in the inbox, and the next session picks it up",
+    "The README lists its limits: the model follows the approval rules and no code enforces them; the hook checks that files changed, not that they are true"
+  ],
+  "stack": ["Claude Code", "Subagents", "Hooks", "Node.js", "Markdown", "HTML canvas"],
+  "testing": "There is no automated test suite, and the README says so. The hook was checked by hand with simulated start and stop events; the page script was checked for syntax and run once with a stubbed browser and sample desks. The template has not been published as a fresh live page, so that path was not re-tested.",
+  "areas": ["ai"],
+  "featured": true,
+  "order": 0
+}
