@@ -2,6 +2,12 @@
   "title": "PH Payroll (payroll system for Philippine companies)",
   "private": true,
   "team": true,
+  "links": [
+    {
+      "label": "Demo video",
+      "url": "https://drive.google.com/file/d/1sQizJs0V6q7KtLqdE_zdarypSeCT0EWJ/view?usp=sharing"
+    }
+  ],
   "tagline": "A web payroll system for Philippine companies, installed once per company on the office network with no internet needed. A team project; my role was developer.",
   "problem": "Philippine payroll has to get SSS, PhilHealth, Pag-IBIG and withholding tax right, plus the labour department's (DOLE) pay rules for overtime, holidays and night work, and the rates change. One wrong rule means wrong pay.",
   "built": "A Django and PostgreSQL application with server-rendered pages and HTMX, installed with Docker Compose. Three roles (Admin, HR/Payroll Officer, Employee) cover employee records, attendance, leave, loans and 13th-month pay. A payroll run is computed, approved and locked; a locked payslip is a saved copy that later rate changes never alter. The pay rules are plain Python with no database code, and money is always a Decimal. The code is proprietary, so the repository is private.",
