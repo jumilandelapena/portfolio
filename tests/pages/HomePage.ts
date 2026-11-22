@@ -70,6 +70,11 @@ export class HomePage extends BasePage {
     return this.page.locator(`#project-${id}`);
   }
 
+  /** The line under a project title: its repository and GitHub metadata, or "Private repository". */
+  projectMeta(id: string): Locator {
+    return this.project(id).getByTestId('repo-meta');
+  }
+
   certification(id: string): Locator {
     return this.page.locator(`#cert-${id}`);
   }

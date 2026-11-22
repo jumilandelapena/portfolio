@@ -20,8 +20,10 @@ function readGlob<T>(dir: string): (T & { id: string })[] {
 
 export interface ProjectData {
   title: string;
-  repo: string;
-  url: string;
+  /** Set when the repository is not public; the entry then has no `repo` and no `url`. */
+  private?: boolean;
+  repo?: string;
+  url?: string;
   links?: { label: string; url: string }[];
   featured?: boolean;
   areas: string[];
